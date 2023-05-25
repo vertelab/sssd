@@ -1,1 +1,4 @@
 # Onboarding new client serverside actions.
+echo "input client host name"
+read CLIENT
+echo $CLIENT

@@ -9,19 +9,18 @@ cd $CLIENT-ssl
 # Generate ssl-key
 #sudo touch slapd_key.pem
 #sudo chown root:root $CLIENT_slapd_key.pem
-sudo certtool --generate-privkey \
---sec-param Medium > $CLIENT_slapd_key.pem
 #sudo certtool --generate-privkey \
-#--sec-param Medium \
-#--outfile $CLIENT_slapd_key.pem
+#--sec-param Medium > $CLIENT_slapd_key.pem
+sudo certtool --generate-privkey \
+--sec-param Medium \
+--outfile $CLIENT_slapd_key.pem
 # Create info file
 echo """organization = Vertel AB
 cn = $CLIENT.vertel.se
 tls_www_server
 encryption_key
 signing_key
-expiration_days = 3650
-""" > $CLIENT.info
+expiration_days = 3650""" > $CLIENT.info
 # Change owner for all files
 sudo chown root:root .*
 # Create client certificate

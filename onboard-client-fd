@@ -18,7 +18,7 @@ signing_key
 expiration_days = 3650
 """ > $CLIENT.info
 # Create client certificate
-certtool --generate-certificate \
+sudo certtool --generate-certificate \
 --load-privkey $CLIENT_slapd_key.pem \
 --load-ca-certificate /etc/ssl/certs/mycacert.pem \
 --load-ca-privkey /etc/ssl/private/mycakey.pem \

@@ -11,7 +11,6 @@ cd $CLIENT-ssl
 #sudo chown root:root $CLIENT_slapd_key.pem
 sudo certtool --generate-privkey \
 --sec-param Medium > $CLIENT_slapd_key.pem
-
 #sudo certtool --generate-privkey \
 #--sec-param Medium \
 #--outfile $CLIENT_slapd_key.pem

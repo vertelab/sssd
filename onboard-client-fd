@@ -1,6 +1,8 @@
 # Onboarding new client serverside actions.
-echo "input client host name"
-read CLIENT
-echo $CLIENT
-env
-echo $1
+CLIENT=$1
+cd /usr/share/fd-vertel-se/
+mkdir $CLIENT-ssl
+cd $CLIENT-ssl
+certtool --generate-privkey \
+--sec-param Medium \
+--outfile $CLIENT_slapd_key.pem

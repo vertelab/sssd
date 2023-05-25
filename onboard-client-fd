@@ -5,10 +5,12 @@ CLIENT=$1
 cd /usr/share/fd-vertel-se/
 mkdir $CLIENT-ssl
 cd $CLIENT-ssl
+
 # Generate ssl-key
 certtool --generate-privkey \
 --sec-param Medium \
 --outfile $CLIENT_slapd_key.pem
+
 # Create info file
 echo """organization = Vertel AB
 cn = $CLIENT.vertel.se

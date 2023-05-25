@@ -1,12 +1,13 @@
 # Onboarding new client serverside actions.
 CLIENT=$1
 # Check $CLIENT
+echo $CLIENT
 # Check directory: (exists + rights)
 cd /usr/share/fd-vertel-se/
 mkdir $CLIENT-ssl
 cd $CLIENT-ssl
 # Generate ssl-key
-touch slapd_key.pem
+#touch slapd_key.pem
 #sudo chown root:root $CLIENT_slapd_key.pem
 sudo certtool --generate-privkey \
 --sec-param Medium \

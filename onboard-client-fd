@@ -1,5 +1,7 @@
 # Onboarding new client serverside actions.
 CLIENT=$1
+# Check $CLIENT
+# Check directory:
 cd /usr/share/fd-vertel-se/
 mkdir $CLIENT-ssl
 cd $CLIENT-ssl

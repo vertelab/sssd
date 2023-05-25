@@ -9,9 +9,9 @@ cd $CLIENT-ssl
 # Generate ssl-key
 #sudo touch slapd_key.pem
 #sudo chown root:root $CLIENT_slapd_key.pem
-printf  certtool --generate-privkey \
+sudo printf certtool --generate-privkey \
 --sec-param Medium > $CLIENT_key.pem
-printf certtool --generate-privkey \
+sudo printf certtool --generate-privkey \
 --sec-param Medium > $CLIENT_slapd_key.pem
 #sudo certtool --generate-privkey \
 #--sec-param Medium \

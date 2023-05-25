@@ -7,6 +7,9 @@ mkdir $CLIENT-ssl
 cd $CLIENT-ssl
 
 # Generate ssl-key
+sudo touch $CLIENT_slapd_key.pem
+sudo chown root:root $CLIENT_slapd_key.pem
+
 sudo certtool --generate-privkey \
 --sec-param Medium \
 --outfile $CLIENT_slapd_key.pem
@@ -20,7 +23,7 @@ signing_key
 expiration_days = 3650
 """ > $CLIENT.info
 # Change owner for all files
-sudo chown root.root .*
+sudo chown root:root .*
 # Create client certificate
 sudo certtool --generate-certificate \
 --load-privkey $CLIENT_slapd_key.pem \

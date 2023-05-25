@@ -7,7 +7,7 @@ cd /usr/share/fd-vertel-se/
 mkdir $CLIENT-ssl
 cd $CLIENT-ssl
 # Generate ssl-key
-#touch slapd_key.pem
+sudo touch slapd_key.pem
 #sudo chown root:root $CLIENT_slapd_key.pem
 sudo certtool --generate-privkey \
 --sec-param Medium \

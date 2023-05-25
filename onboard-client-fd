@@ -1,10 +1,26 @@
 # Onboarding new client serverside actions.
 CLIENT=$1
 # Check $CLIENT
-# Check directory:
+# Check directory: (exists + rights)
 cd /usr/share/fd-vertel-se/
 mkdir $CLIENT-ssl
 cd $CLIENT-ssl
+# Generate ssl-key
 certtool --generate-privkey \
 --sec-param Medium \
 --outfile $CLIENT_slapd_key.pem
+# Create info file
+echo """organization = Vertel AB
+cn = $CLIENT.vertel.se
+tls_www_server
+encryption_key
+signing_key
+expiration_days = 3650
+""" > $CLIENT.info
+# Create client certificate
+certtool --generate-certificate \
+--load-privkey $CLIENT_slapd_key.pem \
+--load-ca-certificate /etc/ssl/certs/mycacert.pem \
+--load-ca-privkey /etc/ssl/private/mycakey.pem \
+--template $CLIENT.info \
+--outfile $CLIENT_slapd_cert.pem

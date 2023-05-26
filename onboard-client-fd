@@ -36,6 +36,8 @@ expiration_days = 3650
 sudo chown root:root .*
 
 # Create the consumer/client certificate
+
+echo "CLIENT_PRIVKEY $CLIENT_PRIVKEY"
 echo """
 
 sudo certtool --generate-certificate \

@@ -1,16 +1,8 @@
 # Onboarding new client clientside actions.
-echo hostname
-
-export HOSTNAME=$hostname
-
-echo $HOSTNAME
 
 # Certificate for an OpenLDAP replica  (consumer/client)
 
-export HOSTNAME2=$1
-echo "2. " +  $HOSTNAME2
-
-export HOSTNAME=$1
+export HOSTNAME=`hostname -s`
 export CLIENTDIR="$HOSTNAME"-ssl
 export CLIENT_PRIVKEY="$HOSTNAME"_slapd_key.pem
 export CLIENT_CERT="$HOSTNAME"_slapd_cert.pem
@@ -20,7 +12,7 @@ sudo apt install gnutls-bin
 sudo apt install ldap-utils
 sudo systemctl restart syslog.service
 ## Install for SSSD
-$ sudo apt install sssd-ldap ldap-utils
+sudo apt install sssd-ldap ldap-utils
 
 ## Do the path:
 cd /usr/share/
@@ -32,3 +24,19 @@ cd $CLIENTDIR
 sudo certtool --generate-privkey \
 --sec-param Medium \
 --outfile CLIENT_PRIVKEY
+
+# Bring the collection of files from the Fusion Directory server to *this* host:
+sudo scp -rp vertel@xxxxxxxxxxx:/usr/share/fd-vertel-se/deathstar-ssl/ /usr/share/ldap
+
+## Change DIR:
+cd /usr/share/ldap
+
+## Install these cert's that was just copied:
+
+## sudo cp deathstar_slapd_cert.pem deathstar_slapd_key.pem /etc/ldap
+sudo cp CLIENT_CERT CLIENT_PRIVKEY /etcldap
+## sudo chgrp openldap /etc/ldap/deathstar_slapd_key.pem
+## sudo chgrp openldap 
+sudo chmod 0640 /etc/ldap/deathstar_slapd_key.pem
+sudo cp mycacert.pem /usr/local/share/ca-certificates/mycacert.crt
+sudo update-ca-certificates

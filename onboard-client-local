@@ -1,10 +1,11 @@
 # Onboarding new client clientside actions.
 echo hostname
-export CLIENT_NAME=$hostname
 
-echo $CLIENT_NAME
+export HOSTNAME=$hostname
+
+echo $HOSTNAME
 
 # Certificate for an OpenLDAP replica  (consumer/client)
 
-export CLIENT=$1
-echo "2. " +  $CLIENT_NAME
+export HOSTNAME2=$1
+echo "2. " +  $HOSTNAME2

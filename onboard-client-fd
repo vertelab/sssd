@@ -52,7 +52,7 @@ sudo certtool --generate-certificate \
 cp $CACERT .
 
 # Create the file certinfo.ldif
-"""dn: cn=config
+echo """dn: cn=config
 add: olcTLSCACertificateFile
 olcTLSCACertificateFile: /etc/ssl/certs/mycacert.pem
 -

@@ -13,10 +13,19 @@ export CLIENTDIR="$CLIENT"-ssl
 export CLIENT_PRIVKEY="$CLIENT"_slapd_key.pem
 export CLIENT_CERT="$CLIENT"_slapd_cert.pem
 # Check $CLIENT
-echo $CLIENT
+if [ -z "$CLIENT"]
+then
+  echo "Missint client: wget .... | bash [client]"
+  exit
+fi
+  
+
+
+echo "Create directory and files for $CLIENT"
 
 # Check directory: (exists + rights)
 cd $CADIR
+sudo rm -r $
 [ -d "$CLIENTDIR" ] || mkdir $CLIENTDIR
 cd $CLIENTDIR
 
@@ -40,7 +49,6 @@ sudo certtool --generate-certificate \
 --load-ca-privkey $CAPRIVKEY \
 --template $CLIENT.info \
 --outfile $CLIENT_CERT
-"""
 
 # Get a copy of the CA certificate:
 cp $CACERT .

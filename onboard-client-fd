@@ -1,17 +1,17 @@
 # Onboarding new client serverside actions.
 # CA-Variables
-CADIR=/usr/share/fd-vertel-se/
-SLAPDPRIVKEY=/etc/ldap/fd_vertel_se_slapd_key.pem
-CACERT=/etc/ssl/certs/mycacert.pem
-CAPRIVKEY=/etc/ssl/private/mycakey.pem
+export CADIR=/usr/share/fd-vertel-se/
+export SLAPDPRIVKEY=/etc/ldap/fd_vertel_se_slapd_key.pem
+export CACERT=/etc/ssl/certs/mycacert.pem
+export CAPRIVKEY=/etc/ssl/private/mycakey.pem
 
 
 # Certificate for an OpenLDAP replica  (consumer/client)
 
-CLIENT=$1
-CLIENTDIR=$CLIENT-ssl
-CLIENT_PRIVKEY=$CLIENT_slapd_key.pem
-CLIENT_CERT=$CLIENT_slapd_cert.pem
+export CLIENT=$1
+export CLIENTDIR=$CLIENT-ssl
+export CLIENT_PRIVKEY=$CLIENT_slapd_key.pem
+export CLIENT_CERT=$CLIENT_slapd_cert.pem
 # Check $CLIENT
 echo $CLIENT
 

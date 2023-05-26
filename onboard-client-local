@@ -9,3 +9,26 @@ echo $HOSTNAME
 
 export HOSTNAME2=$1
 echo "2. " +  $HOSTNAME2
+
+export HOSTNAME=$1
+export CLIENTDIR="$HOSTNAME"-ssl
+export CLIENT_PRIVKEY="$HOSTNAME"_slapd_key.pem
+export CLIENT_CERT="$HOSTNAME"_slapd_cert.pem
+
+## Install certtool
+sudo apt install gnutls-bin
+sudo apt install ldap-utils
+sudo systemctl restart syslog.service
+## Install for SSSD
+$ sudo apt install sssd-ldap ldap-utils
+
+## Do the path:
+cd /usr/share/
+sudo mkdir $CLIENTDIR
+
+cd $CLIENTDIR
+
+# Do the key:
+sudo certtool --generate-privkey \
+--sec-param Medium \
+--outfile CLIENT_PRIVKEY

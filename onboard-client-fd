@@ -21,11 +21,7 @@ cd $CADIR
 cd $CLIENTDIR
 
 # Generate ssl-key
-certtool --generate-privkey \
---sec-param Medium \
---outfile $CLIENT_PRIVKEY
-
-
+certtool --generate-privkey --sec-param Medium --outfile $CLIENT_PRIVKEY
 
 # Create info file
 echo """organization = Vertel AB

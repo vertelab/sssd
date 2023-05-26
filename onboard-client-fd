@@ -18,8 +18,6 @@ then
   echo "Missint client: wget .... | bash -s [client]"
   exit
 fi
-  
-
 
 echo "Create directory and files for $CLIENT"
 

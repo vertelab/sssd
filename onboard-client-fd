@@ -15,7 +15,7 @@ export CLIENT_CERT="$CLIENT"_slapd_cert.pem
 # Check $CLIENT
 if [ -z "$CLIENT" ]
 then
-  echo "Missint client: wget .... | bash -s [client]"
+  echo "Missing name of client parameter: wget .... | bash -s [client]"
   exit
 fi
 

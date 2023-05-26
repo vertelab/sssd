@@ -11,7 +11,7 @@ CAPRIVKEY=/etc/ssl/private/mycakey.pem
 CLIENT=$1
 CLIENTDIR=$CLIENT-ssl
 CLIENT_PRIVKEY=$CLIENT_slapd_key.pem
-CLIENT_CERT=
+CLIENT_CERT=$CLIENT_slapd_cert.pem
 # Check $CLIENT
 echo $CLIENT
 
@@ -40,8 +40,14 @@ sudo chown root:root .*
 
 # Create the consumer/client certificate
 sudo certtool --generate-certificate \
---load-privkey $CLIENT_PEM \
+--load-privkey $CLIENT_PRIVKEY \
 --load-ca-certificate $CACERT \
 --load-ca-privkey $CAPRIVKEY \
 --template $CLIENT.info \
---outfile $CLIENT_slapd_cert.pem
+--outfile $CLIENT_CERT
+
+# Get a copy of the CA certificate:
+cp $CACERT .
+
+#### DONE
+echo DONE

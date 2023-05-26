@@ -23,8 +23,9 @@ cd $CLIENTDIR
 # Generate ssl-key
 certtool --generate-privkey \
 --sec-param Medium \
-#--bits 2048 \
 --outfile $CLIENT_PRIVKEY
+
+
 
 # Create info file
 echo """organization = Vertel AB

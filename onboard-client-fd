@@ -25,8 +25,8 @@ echo "Create directory and files for $CLIENT"
 
 # Check directory: (exists + rights)
 cd $CADIR
-sudo rm -r $
-[ -d "$CLIENTDIR" ] || mkdir $CLIENTDIR
+sudo rm -rf $CLIENTDIR
+mkdir $CLIENTDIR
 cd $CLIENTDIR
 
 # Generate ssl-key

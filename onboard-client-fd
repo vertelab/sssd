@@ -36,13 +36,16 @@ expiration_days = 3650
 sudo chown root:root .*
 
 # Create the consumer/client certificate
+echo """
+
 sudo certtool --generate-certificate \
 --load-privkey $CLIENT_PRIVKEY \
 --load-ca-certificate $CACERT \
 --load-ca-privkey $CAPRIVKEY \
 --template $CLIENT.info \
 --outfile $CLIENT_CERT
-
+"""
+exit
 # Get a copy of the CA certificate:
 cp $CACERT .
 

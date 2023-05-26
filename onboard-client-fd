@@ -51,6 +51,17 @@ sudo certtool --generate-certificate \
 # Get a copy of the CA certificate:
 cp $CACERT .
 
+# Create the file certinfo.ldif
+"""dn: cn=config
+add: olcTLSCACertificateFile
+olcTLSCACertificateFile: /etc/ssl/certs/mycacert.pem
+-
+add: olcTLSCertificateFile
+olcTLSCertificateFile: /etc/ldap/$CLIENT_slapd_cert.pem
+-
+add: olcTLSCertificateKeyFile
+olcTLSCertificateKeyFile: /etc/ldap/$CLIENT_slapd_key.pem""" > certinfo.ldif
+
 # Change owner for all files
 sudo chown root:root * .
 

@@ -17,7 +17,7 @@ echo $CLIENT
 
 # Check directory: (exists + rights)
 cd $CADIR
-[ -d $CLIENTDIR ] || mkdir $CLIENTDIR
+[ -d "$CLIENTDIR" ] || mkdir $CLIENTDIR
 cd $CLIENTDIR
 
 # Generate ssl-key

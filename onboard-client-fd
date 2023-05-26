@@ -9,9 +9,9 @@ export CAPRIVKEY=/etc/ssl/private/mycakey.pem
 # Certificate for an OpenLDAP replica  (consumer/client)
 
 export CLIENT=$1
-export CLIENTDIR=$CLIENT-ssl
-export CLIENT_PRIVKEY=$CLIENT_slapd_key.pem
-export CLIENT_CERT=$CLIENT_slapd_cert.pem
+export CLIENTDIR={$CLIENT}-ssl
+export CLIENT_PRIVKEY={$CLIENT}_slapd_key.pem
+export CLIENT_CERT={$CLIENT}_slapd_cert.pem
 # Check $CLIENT
 echo $CLIENT
 

@@ -32,9 +32,6 @@ signing_key
 expiration_days = 3650
 """ > $CLIENT.info
 
-# Change owner for all files
-sudo chown root:root .*
-
 # Create the consumer/client certificate
 
 echo "CLIENT_PRIVKEY $CLIENT_PRIVKEY"
@@ -50,6 +47,9 @@ sudo certtool --generate-certificate \
 exit
 # Get a copy of the CA certificate:
 cp $CACERT .
+
+# Change owner for all files
+sudo chown root:root * .
 
 #### DONE
 echo DONE

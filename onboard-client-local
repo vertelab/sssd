@@ -1,3 +1,5 @@
 # Onboarding new client clientside actions.
-echo hostname
-export CLIENT_NAME=hostname
+echo $hostname
+export CLIENT_NAME=$hostname
+
+echo $CLIENT_NAME

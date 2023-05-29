@@ -8,6 +8,10 @@ export CLIENT_PRIVKEY="$HOSTNAME"_slapd_key.pem
 export CLIENT_CERT="$HOSTNAME"_slapd_cert.pem
 
 echo Hostname: $HOSTNAME
+echo CLIENTDIR $CLIENTDIR
+echo CLIENT_PRIVKEY $CLIENT_PRIVKEY
+echo CLIENT_CERT $CLIENT_CERT
+
 
 ## Install certtool
 sudo apt install gnutls-bin

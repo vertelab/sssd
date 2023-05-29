@@ -70,10 +70,13 @@ echo Make the path /etc/ldap
 sudo mkdir /etc/ldap
 echo Content of path is ... 71 = `ls`
 
+echo sudo -s ...
+sudo -s
+
 ## sudo cp deathstar_slapd_cert.pem deathstar_slapd_key.pem /etc/ldap
 sudo cp $CLIENT_CERT /etc/ldap/
 sudo cp $CLIENT_PRIVKEY /etc/ldap/
-echo Content of path is ... 76 = `ls`
+echo Content of path is ... 79 = `ls`
 
 ## sudo chgrp openldap /etc/ldap/deathstar_slapd_key.pem
 ## sudo chgrp openldap 

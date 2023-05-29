@@ -1,0 +1,1 @@
+scp -rp vertel@lynx.vertel.se:/usr/share/fd-vertel-se/deathstar-ssl .

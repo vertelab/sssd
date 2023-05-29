@@ -47,8 +47,14 @@ echo The move is complete!
 
 ## Change DIR:
 cd /usr/share/ldap
-
 echo cd /usr/share/ldap ...
+
+echo chown root:root .
+sudo chown root:root .
+echo chmod 0640 .
+sudo chmod 0640 .
+
+
 echo Install certs ... and modify...
 
 ## Install these cert's that was just copied:

@@ -12,7 +12,6 @@ echo CLIENTDIR $CLIENTDIR
 echo CLIENT_PRIVKEY $CLIENT_PRIVKEY
 echo CLIENT_CERT $CLIENT_CERT
 
-
 ## Install certtool
 sudo apt install gnutls-bin
 sudo apt install ldap-utils
@@ -38,35 +37,31 @@ echo Do the key... done!
 echo Do the remote fiddle...
 echo vertel@lynx.vertel.se:/usr/share/fd-vertel-se/$CLIENTDIR /tmp
 
-
 # Bring the collection of files from the Fusion Directory server to *this* host:
 scp -rp vertel@lynx.vertel.se:/usr/share/fd-vertel-se/$CLIENTDIR /tmp
-echo Now is path... 40 = `pwd`
+echo Now is path... 42 = `pwd`
 
 echo Copy the files...
 sudo cp -r /tmp/$CLIENTDIR /usr/share/
 echo The copy is complete!
 rm -r /tmp/$CLIENTDIR
 
-
-echo chown root:root .
+echo chown root:root -R /usr/share/$CLIENTDIR
 sudo chown root:root -R /usr/share/$CLIENTDIR
-echo chmod 0640 .
+echo chmod 0640 -R /usr/share/$CLIENTDIR
 sudo chmod 0640 -R /usr/share/$CLIENTDIR
 
-
 echo Install certs ... and modify...
-echo Now is path... = `pwd`
-sudo -s
+echo Now is path... 55 = `pwd`
+echo Files in path... 56 = `ls | wc -l`
 
 ## Install these cert's that was just copied:
-echo Now is path... 68 = `pwd`
-echo Files in path... 69 = `ls | wc -l`
 
 ## sudo cp deathstar_slapd_cert.pem deathstar_slapd_key.pem /etc/ldap
-sudo cp -v $CLIENT_CERT /etc/ldap/
-sudo cp -v $CLIENT_PRIVKEY /etc/ldap/
-echo Content of path is ... 79 = `ls`
+sudo cp -v $CLIENT_CERT $CLIENT_PRIVKEY /etc/ldap
+#sudo cp -v $CLIENT_CERT /etc/ldap/
+#sudo cp -v $CLIENT_PRIVKEY /etc/ldap/
+echo Files in path... 64 = `ls | wc -l`
 
 ## sudo chgrp openldap /etc/ldap/deathstar_slapd_key.pem
 ## sudo chgrp openldap 

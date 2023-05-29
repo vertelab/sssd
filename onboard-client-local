@@ -35,8 +35,15 @@ echo vertel@lynx.vertel.se:/usr/share/fd-vertel-se/$CLIENTDIR /usr/share/ldap
 
 # Bring the collection of files from the Fusion Directory server to *this* host:
 scp -rp vertel@lynx.vertel.se:/usr/share/fd-vertel-se/$CLIENTDIR /tmp
-sudo mv /tmp/$CLIENTDIR /usr/share/ldap
+echo Clear the path!
+sudo rm -r /usr/share/ldap
+
+echo Create /usr/share/ldap folder...
+sudo mkdir /usr/share/ldap
+
 echo Move the files...
+sudo mv /tmp/$CLIENTDIR /usr/share/ldap
+echo The move is complete!
 
 ## Change DIR:
 cd /usr/share/ldap

@@ -59,8 +59,14 @@ sudo chmod 0640 .
 
 
 echo Install certs ... and modify...
+echo Now is path... = `pwd`
+echo Content of path is ... = `ls -la`
 
 ## Install these cert's that was just copied:
+echo Clear the path /etc/ldap
+sudo rm -r /etc/ldap
+echo Make the path /etc/ldap
+sudo mkdir /etc/ldap
 
 ## sudo cp deathstar_slapd_cert.pem deathstar_slapd_key.pem /etc/ldap
 sudo cp $CLIENT_CERT $CLIENT_PRIVKEY /etc/ldap

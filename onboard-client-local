@@ -7,6 +7,8 @@ export CLIENTDIR="$HOSTNAME"-ssl
 export CLIENT_PRIVKEY="$HOSTNAME"_slapd_key.pem
 export CLIENT_CERT="$HOSTNAME"_slapd_cert.pem
 
+echo Hostname: $HOSTNAME
+
 ## Install certtool
 sudo apt install gnutls-bin
 sudo apt install ldap-utils

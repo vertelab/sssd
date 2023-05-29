@@ -72,7 +72,8 @@ sudo mkdir /etc/ldap
 
 echo sudo -s ...
 sudo -s
-echo Now is path... 73 = `pwd`
+echo Now is path... 75 = `pwd`
+echo Files in path... 76 = `ls | wc -l`
 
 ## sudo cp deathstar_slapd_cert.pem deathstar_slapd_key.pem /etc/ldap
 sudo cp -v $CLIENT_CERT /etc/ldap/
@@ -88,6 +89,7 @@ sudo update-ca-certificates
 
 ## Create the file certinfo.ldif ...
 echo Create the file certinfo.ldif ...
+echo Now is path... 91 = `pwd`
 
 echo """dn: cn=config
 add: olcTLSCACertificateFile
@@ -101,6 +103,7 @@ olcTLSCertificateKeyFile: /etc/ldap/$CLIENT_PRIVKEY""" > certinfo.ldif
 
 # Change owner for all files
 sudo chown root:root * .
+echo Now is path... 105 = `pwd`
 
 ## Configure the slapd-config database:
 sudo ldapmodify -Y EXTERNAL -H ldapi:/// -f certinfo.ldif

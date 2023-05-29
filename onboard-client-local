@@ -34,10 +34,27 @@ cd /usr/share/ldap
 ## Install these cert's that was just copied:
 
 ## sudo cp deathstar_slapd_cert.pem deathstar_slapd_key.pem /etc/ldap
-sudo cp $CLIENT_CERT $CLIENT_PRIVKEY /etcldap
+sudo cp $CLIENT_CERT $CLIENT_PRIVKEY /etc/ldap
 ## sudo chgrp openldap /etc/ldap/deathstar_slapd_key.pem
 ## sudo chgrp openldap 
 ## sudo chmod 0640 /etc/ldap/deathstar_slapd_key.pem
 sudo chmod 0640 /etc/ldap/$CLIENT_PRIVKEY
 sudo cp mycacert.pem /usr/local/share/ca-certificates/mycacert.crt
 sudo update-ca-certificates
+
+## Create the file certinfo.ldif ...
+
+echo """dn: cn=config
+add: olcTLSCACertificateFile
+olcTLSCACertificateFile: /etc/ssl/certs/mycacert.pem
+-
+add: olcTLSCertificateFile
+olcTLSCertificateFile: /etc/ldap/$CLIENT_CERT
+-
+add: olcTLSCertificateKeyFile
+olcTLSCertificateKeyFile: /etc/ldap/$CLIENT_PRIVKEY""" > certinfo.ldif
+
+## Configure the slapd-config database:
+sudo ldapmodify -Y EXTERNAL -H ldapi:/// -f certinfo.ldif
+
+

@@ -34,7 +34,18 @@ echo vertel@lynx.vertel.se:/usr/share/fd-vertel-se/$CLIENTDIR /usr/share/ldap
 
 
 # Bring the collection of files from the Fusion Directory server to *this* host:
-sudo scp -rp vertel@lynx.vertel.se:/usr/share/fd-vertel-se/$CLIENTDIR /usr/share/ldap
+#sudo scp -rp vertel@lynx.vertel.se:/usr/share/fd-vertel-se/$CLIENTDIR /usr/share/ldap
+
+## Bring the files, one by one!
+# ssh test@192.168.94.137 'cat > /etc/test/some_file'
+ssh vertel@fd.vertel.se:/usr/share/fd-vertel-se/$CLIENTDIR/ 'cat > /etc/test/some_file'
+
+
+mycacert.pem  
+deathstar_slapd_key.pe 
+deathstar_slapd_cert.pem   
+certinfo.ldif 
+deathstar.inf
 
 ## Change DIR:
 cd /usr/share/ldap

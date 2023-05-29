@@ -18,6 +18,7 @@ sudo apt install sssd-ldap ldap-utils
 cd /usr/share/
 sudo rm -r $CLIENTDIR
 sudo mkdir $CLIENTDIR
+echo Do the path...
 
 cd $CLIENTDIR
 
@@ -26,11 +27,16 @@ sudo certtool --generate-privkey \
 --sec-param Medium \
 --outfile CLIENT_PRIVKEY
 
+echo Do the key...
+
 # Bring the collection of files from the Fusion Directory server to *this* host:
 sudo scp -rp vertel@lynx.vertel.se:/usr/share/fd-vertel-se/$CLIENTDIR /usr/share/ldap
 
 ## Change DIR:
 cd /usr/share/ldap
+
+echo "cd /usr/share/ldap ..."
+echo Install certs ... and modify...
 
 ## Install these cert's that was just copied:
 
@@ -44,6 +50,7 @@ sudo cp mycacert.pem /usr/local/share/ca-certificates/mycacert.crt
 sudo update-ca-certificates
 
 ## Create the file certinfo.ldif ...
+echo Create the file certinfo.ldif ...
 
 echo """dn: cn=config
 add: olcTLSCACertificateFile

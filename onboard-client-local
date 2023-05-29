@@ -43,8 +43,8 @@ sudo mkdir /usr/share/ldap
 echo Now is path... = `pwd`
 
 ## Change DIR:
-cd /usr/share/ldap
-echo cd /usr/share/ldap ...
+# cd /usr/share/ldap
+echo cd /usr/share/ldap ... NOT!
 echo Now is path... = `pwd`
 
 echo Move the files...

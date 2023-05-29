@@ -40,14 +40,17 @@ sudo rm -r /usr/share/ldap
 
 echo Create /usr/share/ldap folder...
 sudo mkdir /usr/share/ldap
+echo Now is path... = `pwd`
+
+## Change DIR:
+cd /usr/share/ldap
+echo cd /usr/share/ldap ...
+echo Now is path... = `pwd`
 
 echo Move the files...
 sudo mv /tmp/$CLIENTDIR /usr/share/ldap
 echo The move is complete!
 
-## Change DIR:
-cd /usr/share/ldap
-echo cd /usr/share/ldap ...
 
 echo chown root:root .
 sudo chown root:root .

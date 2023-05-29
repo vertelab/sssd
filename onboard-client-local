@@ -16,6 +16,7 @@ sudo apt install sssd-ldap ldap-utils
 
 ## Do the path:
 cd /usr/share/
+sudo rm -r $CLIENTDIR
 sudo mkdir $CLIENTDIR
 
 cd $CLIENTDIR

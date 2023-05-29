@@ -71,14 +71,14 @@ sudo mkdir /etc/ldap
 echo Content of path is ... 71 = `ls -la`
 
 ## sudo cp deathstar_slapd_cert.pem deathstar_slapd_key.pem /etc/ldap
-sudo cp $CLIENT_CERT $CLIENT_PRIVKEY /etc/ldap
+sudo cp -r $CLIENT_CERT $CLIENT_PRIVKEY /etc/ldap/
 echo Content of path is ... 75 = `ls -la`
 
 ## sudo chgrp openldap /etc/ldap/deathstar_slapd_key.pem
 ## sudo chgrp openldap 
 ## sudo chmod 0640 /etc/ldap/deathstar_slapd_key.pem
 sudo chmod 0640 /etc/ldap/$CLIENT_PRIVKEY
-sudo cp mycacert.pem /usr/local/share/ca-certificates/mycacert.crt
+sudo cp -r mycacert.pem /usr/local/share/ca-certificates/mycacert.crt
 sudo update-ca-certificates
 
 ## Create the file certinfo.ldif ...

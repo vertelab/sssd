@@ -27,37 +27,28 @@ cd $CLIENTDIR
 # Do the key:
 sudo certtool --generate-privkey \
 --sec-param Medium \
---outfile CLIENT_PRIVKEY
+--outfile $CLIENT_PRIVKEY
 
 echo Do the key... done!
 
 echo Do the remote fiddle...
-echo vertel@lynx.vertel.se:/usr/share/fd-vertel-se/$CLIENTDIR /usr/share/ldap
+echo vertel@lynx.vertel.se:/usr/share/fd-vertel-se/$CLIENTDIR /tmp
 
 
 # Bring the collection of files from the Fusion Directory server to *this* host:
 scp -rp vertel@lynx.vertel.se:/usr/share/fd-vertel-se/$CLIENTDIR /tmp
-echo Clear the path!
-sudo rm -r /usr/share/ldap
+echo Now is path... 40 = `pwd`
 
-echo Create /usr/share/ldap folder...
-sudo mkdir /usr/share/ldap
-echo Now is path... = `pwd`
-
-## Change DIR:
-# cd /usr/share/ldap
-echo cd /usr/share/ldap ... NOT!
-echo Now is path... = `pwd`
-
-echo Move the files...
-sudo mv /tmp/$CLIENTDIR /usr/share/ldap
-echo The move is complete!
+echo Copy the files...
+sudo cp -r /tmp/$CLIENTDIR /usr/share/
+echo The copy is complete!
+rm -r /tmp/$CLIENTDIR
 
 
 echo chown root:root .
-sudo chown root:root .
+sudo chown root:root -R /usr/share/$CLIENTDIR
 echo chmod 0640 .
-sudo chmod 0640 .
+sudo chmod 0640 -R /usr/share/$CLIENTDIR
 
 
 echo Install certs ... and modify...
@@ -65,15 +56,8 @@ echo Now is path... = `pwd`
 sudo -s
 
 ## Install these cert's that was just copied:
-echo Clear the path /etc/ldap
-sudo rm -r /etc/ldap
-echo Make the path /etc/ldap
-sudo mkdir /etc/ldap
-
-echo sudo -s ...
-sudo -s
-echo Now is path... 75 = `pwd`
-echo Files in path... 76 = `ls | wc -l`
+echo Now is path... 68 = `pwd`
+echo Files in path... 69 = `ls | wc -l`
 
 ## sudo cp deathstar_slapd_cert.pem deathstar_slapd_key.pem /etc/ldap
 sudo cp -v $CLIENT_CERT /etc/ldap/

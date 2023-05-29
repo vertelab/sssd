@@ -72,7 +72,11 @@ sudo update-ca-certificates
 
 ## Create the file certinfo.ldif ...
 echo Create the file certinfo.ldif ...
-echo Now is path... 91 = `pwd`
+echo Now is path... 75 = `pwd`
+
+echo Confirm names:
+echo CLIENT_CERT $CLIENT_CERT
+echo CLIENT_PRIVKEY $CLIENT_PRIVKEY
 
 echo """dn: cn=config
 add: olcTLSCACertificateFile
@@ -84,9 +88,9 @@ olcTLSCertificateFile: /etc/ldap/$CLIENT_CERT
 add: olcTLSCertificateKeyFile
 olcTLSCertificateKeyFile: /etc/ldap/$CLIENT_PRIVKEY""" > certinfo.ldif
 
+echo Now is path... 91 = `pwd`
 # Change owner for all files
-sudo chown root:root * .
-echo Now is path... 105 = `pwd`
+#sudo chown root:root * .
 
 ## Configure the slapd-config database:
 sudo ldapmodify -Y EXTERNAL -H ldapi:/// -f certinfo.ldif

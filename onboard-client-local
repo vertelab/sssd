@@ -44,7 +44,7 @@ sudo update-ca-certificates
 
 ## Create the file certinfo.ldif ...
 
-echo """dn: cn=config
+echo "dn: cn=config
 add: olcTLSCACertificateFile
 olcTLSCACertificateFile: /etc/ssl/certs/mycacert.pem
 -
@@ -52,7 +52,7 @@ add: olcTLSCertificateFile
 olcTLSCertificateFile: /etc/ldap/$CLIENT_CERT
 -
 add: olcTLSCertificateKeyFile
-olcTLSCertificateKeyFile: /etc/ldap/$CLIENT_PRIVKEY""" > certinfo.ldif
+olcTLSCertificateKeyFile: /etc/ldap/$CLIENT_PRIVKEY" > certinfo.ldif
 
 ## Configure the slapd-config database:
 sudo ldapmodify -Y EXTERNAL -H ldapi:/// -f certinfo.ldif

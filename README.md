@@ -12,4 +12,4 @@ wget -O- https://raw.githubusercontent.com/vertelab/sssd/main/onboard-client-fd 
 wget -O- https://raw.githubusercontent.com/vertelab/sssd/main/onboard-client-local | bash -s [client-hostname]
 
 
-wget -O- https://raw.githubusercontent.com/vertelab/sssd/main/onboard-client-local
+wget -O- https://raw.githubusercontent.com/vertelab/sssd/main/onboard-client-local | bash

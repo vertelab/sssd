@@ -43,10 +43,10 @@ echo Do the remote fiddle...
 
 ssh fd.vertel.se create-fd-client-cert $HOSTNAME
 
-echo vertel@lynx.vertel.se:/usr/share/fd-vertel-se/$CLIENTDIR /tmp
+echo scp -rp fd.vertel.se:/usr/share/fd-vertel-se/$CLIENTDIR /tmp
 
 # Bring the collection of files from the Fusion Directory server to *this* host:
-scp -rp vertel@lynx.vertel.se:/usr/share/fd-vertel-se/$CLIENTDIR /tmp
+scp -rp fd.vertel.se:/usr/share/fd-vertel-se/$CLIENTDIR /tmp
 echo Now is path... 42 = `pwd`
 
 echo Copy the files...

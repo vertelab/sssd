@@ -17,14 +17,14 @@ export CLIENT_CERT="$CLIENT"_slapd_cert.pem
 # Check $CLIENT
 if [ -z "$CLIENT" ]
 then
-  echo "Missing name of client parameter: wget .... | bash -s [client]"
+  echo "Missing name of client parameter: $0 [client]"
   exit
 fi
 cd $CADIR
 # Check $CLIENTDIR
 if [ -d "$CLIENTDIR" ]
 then
-  echo "Missing name of client parameter: wget .... | bash -s [client]"
+  echo "Missing directory of client parameter: $0 [client]"
   exit
 fi
 

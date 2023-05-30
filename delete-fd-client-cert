@@ -29,8 +29,20 @@ sudo rm -rf $CLIENTDIR
 mkdir $CLIENTDIR
 cd $CLIENTDIR
 
-# Generate ssl-key
-[ -f "$CLIENT_PRIVKEY" ] || certtool --generate-privkey --sec-param Medium --outfile $CLIENT_PRIVKEY
+# Go there...!
+
+# Create the file delete-certinfo.ldif
+echo """dn: cn=config
+delete: olcTLSCACertificateFile
+olcTLSCACertificateFile: /etc/ssl/certs/mycacert.pem
+-
+delete: olcTLSCertificateFile
+olcTLSCertificateFile: /etc/ldap/$CLIENT_PRIVKEY
+-
+delete: olcTLSCertificateKeyFile
+olcTLSCertificateKeyFile: /etc/ldap/$CLIENT_CERT""" > certinfo.ldif
+
+sudo ldapmodify -Y EXTERNAL -H ldapi:/// -f delete-certinfo.ldif
 
 # Create info file
 echo """organization = Vertel AB
@@ -53,21 +65,8 @@ sudo certtool --generate-certificate \
 # Get a copy of the CA certificate:
 cp $CACERT .
 
-# Create the file certinfo.ldif
-echo """dn: cn=config
-add: olcTLSCACertificateFile
-olcTLSCACertificateFile: /etc/ssl/certs/mycacert.pem
--
-add: olcTLSCertificateFile
-olcTLSCertificateFile: /etc/ldap/$CLIENT_PRIVKEY
--
-add: olcTLSCertificateKeyFile
-olcTLSCertificateKeyFile: /etc/ldap/$CLIENT_CERT""" > certinfo.ldif
 
-sudo ldapmodify -Y EXTERNAL -H ldapi:/// -f certinfo.ldif
 
-# Change owner for all files
-sudo chown root:root * .
 
 #### DONE
 echo DONE

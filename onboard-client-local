@@ -15,7 +15,7 @@ echo CLIENT_CERT $CLIENT_CERT
 
 ## Do the server fiddle while we're at it!
 echo Do the server fiddle while we can...
-ssh fd.vertel.se create-fd-client-cert $HOSTNAME
+ssh -t fd.vertel.se "sudo create-fd-client-cert $HOSTNAME"
 
 ## Install certtool
 sudo apt install gnutls-bin

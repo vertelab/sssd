@@ -1,13 +1,11 @@
 #!/bin/bash
 
-
 # Onboarding new client serverside actions.
 # CA-Variables
 export CADIR=/usr/share/fd-vertel-se/
 export SLAPDPRIVKEY=/etc/ldap/fd_vertel_se_slapd_key.pem
 export CACERT=/etc/ssl/certs/mycacert.pem
 export CAPRIVKEY=/etc/ssl/private/mycakey.pem
-
 
 # Certificate for an OpenLDAP replica  (consumer/client)
 
@@ -54,16 +52,17 @@ sudo certtool --generate-certificate \
 # Get a copy of the CA certificate:
 cp $CACERT .
 
+
+echo CLIENT_PRIVKEY: $CLIENT_PRIVKEY
+echo CLIENT_CERT: $CLIENT_CERT
+
 # Create the file certinfo.ldif
 echo """dn: cn=config
-add: olcTLSCACertificateFile
-olcTLSCACertificateFile: /etc/ssl/certs/mycacert.pem
+replace: olcTLSCertificateFile
+olcTLSCertificateFile: /usr/share/fd-vertel-se/$CLIENT_PRIVKEY
 -
-add: olcTLSCertificateFile
-olcTLSCertificateFile: /etc/ldap/$CLIENT_PRIVKEY
--
-add: olcTLSCertificateKeyFile
-olcTLSCertificateKeyFile: /etc/ldap/$CLIENT_CERT""" > certinfo.ldif
+replace: olcTLSCertificateKeyFile
+olcTLSCertificateKeyFile: /usr/share/fd-vertel-se/$CLIENT_CERT""" > certinfo.ldif
 
 sudo ldapmodify -Y EXTERNAL -H ldapi:/// -f certinfo.ldif
 

@@ -1,5 +1,3 @@
-#!/bin/bash
-
 # Onboarding new client serverside actions.
 # CA-Variables
 export CADIR=/usr/share/fd-vertel-se/

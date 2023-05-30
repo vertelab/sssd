@@ -15,6 +15,8 @@ export CLIENTDIR="$CLIENT"-ssl
 export CLIENT_PRIVKEY="$CLIENT"_slapd_key.pem
 export CLIENT_CERT="$CLIENT"_slapd_cert.pem
 # Check $CLIENT
+echo CLIENT = $CLIENT
+echo CLIENTDIR = $CLIENTDIR
 if [ -z "$CLIENT" ]
 then
   echo "Missing name of client parameter: $0 [client]"
@@ -22,9 +24,9 @@ then
 fi
 cd $CADIR
 # Check $CLIENTDIR
-if [ -d "$CLIENTDIR" ]
+if ! [ -d "$CLIENTDIR" ]
 then
-  echo "Missing directory of client parameter: $0 [client]"
+  echo "Missing directory $CLIENTDIR of client parameter: $0 [client]"
   exit
 fi
 
@@ -33,11 +35,12 @@ echo "Remove directory and files for $CLIENT"
 cd $CLIENTDIR
 # Go there...!
 
+echo Touch ... This path... = `pwd`
+
+sudo touch delete-certinfo.ldif
+sudo chmod a+w delete-certinfo.ldif
 # Create the file delete-certinfo.ldif
 echo """dn: cn=config
-delete: olcTLSCACertificateFile
-olcTLSCACertificateFile: /etc/ssl/certs/mycacert.pem
--
 delete: olcTLSCertificateFile
 olcTLSCertificateFile: /etc/ldap/$CLIENT_PRIVKEY
 -

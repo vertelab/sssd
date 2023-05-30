@@ -58,10 +58,10 @@ echo CLIENT_CERT: $CLIENT_CERT
 
 # Create the file certinfo.ldif
 echo """dn: cn=config
-replace: olcTLSCertificateFile
+add: olcTLSCertificateFile
 olcTLSCertificateFile: /usr/share/fd-vertel-se/$CLIENT_PRIVKEY
 -
-replace: olcTLSCertificateKeyFile
+add: olcTLSCertificateKeyFile
 olcTLSCertificateKeyFile: /usr/share/fd-vertel-se/$CLIENT_CERT""" > certinfo.ldif
 
 sudo ldapmodify -Y EXTERNAL -H ldapi:/// -f certinfo.ldif

@@ -20,15 +20,17 @@ then
   echo "Missing name of client parameter: wget .... | bash -s [client]"
   exit
 fi
-
-echo "Create directory and files for $CLIENT"
-
-# Check directory: (exists + rights)
 cd $CADIR
-sudo rm -rf $CLIENTDIR
-mkdir $CLIENTDIR
-cd $CLIENTDIR
+# Check $CLIENTDIR
+if [ -d "$CLIENTDIR" ]
+then
+  echo "Missing name of client parameter: wget .... | bash -s [client]"
+  exit
+fi
 
+echo "Remove directory and files for $CLIENT"
+# Check directory: (exists + rights)
+cd $CLIENTDIR
 # Go there...!
 
 # Create the file delete-certinfo.ldif
@@ -40,32 +42,12 @@ delete: olcTLSCertificateFile
 olcTLSCertificateFile: /etc/ldap/$CLIENT_PRIVKEY
 -
 delete: olcTLSCertificateKeyFile
-olcTLSCertificateKeyFile: /etc/ldap/$CLIENT_CERT""" > certinfo.ldif
+olcTLSCertificateKeyFile: /etc/ldap/$CLIENT_CERT""" > delete-certinfo.ldif
 
 sudo ldapmodify -Y EXTERNAL -H ldapi:/// -f delete-certinfo.ldif
 
-# Create info file
-echo """organization = Vertel AB
-cn = $CLIENT.vertel.se
-tls_www_server
-encryption_key
-signing_key
-expiration_days = 3650
-""" > $CLIENT.info
-
-# Create the consumer/client certificate
-
-sudo certtool --generate-certificate \
---load-privkey $CLIENT_PRIVKEY \
---load-ca-certificate $CACERT \
---load-ca-privkey $CAPRIVKEY \
---template $CLIENT.info \
---outfile $CLIENT_CERT
-
-# Get a copy of the CA certificate:
-cp $CACERT .
-
-
+cd ..
+sudo rm -rf $CLIENTDIR
 
 
 #### DONE

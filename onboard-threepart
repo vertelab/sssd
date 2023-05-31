@@ -1,1 +1,7 @@
-#123
+#!/bin/bash
+
+# https://www.baeldung.com/linux/linux-error-sudo-tty-askpass
+# $ ssh -t remote_username@remote_host "sudo reboot"
+# deathstar = 192.168.1.247
+
+echo 'ssh -t fd.vertel.se' | 'ssh -t 192.168.1.247 "sudo reboot"'

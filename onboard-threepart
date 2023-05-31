@@ -17,5 +17,6 @@
 # 1. Pull/push the collection of filez from the FD-server to the distributed client
 # Bring the collection of files from the Fusion Directory server to *this* host:
 # scp -rp fd.vertel.se:/usr/share/fd-vertel-se/$CLIENTDIR /tmp
+# Example: https://kb.iu.edu/d/agye
 scp -rp fd.vertel.se:/usr/share/fd-vertel-se/deathstar-ssl 192.168.1.247:/tmp
 

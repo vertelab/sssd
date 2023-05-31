@@ -19,6 +19,7 @@
 
 export CLIENT=$1
 export CLIENTIP=$2
+export CLIENTDIR="$CLIENT"-ssl
 # Check $CLIENT
 if [ -z "$CLIENT" ]
 then

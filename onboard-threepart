@@ -15,79 +15,23 @@
 #
 # Guide, source: https://ubuntu.com/server/docs/service-ldap-with-tls
 # Onboarding new client serverside actions.
-# CA-Variables
-export CADIR=/usr/share/fd-vertel-se/
-export SLAPDPRIVKEY=/etc/ldap/fd_vertel_se_slapd_key.pem
-export CACERT=/etc/ssl/certs/mycacert.pem
-export CAPRIVKEY=/etc/ssl/private/mycakey.pem
 
-# Certificate for an OpenLDAP replica  (consumer/client)
 
 export CLIENT=$1
 export CLIENTIP=$2
-export CLIENTDIR="$CLIENT"-ssl
-export CLIENT_PRIVKEY="$CLIENT"_slapd_key.pem
-export CLIENT_CERT="$CLIENT"_slapd_cert.pem
 # Check $CLIENT
 if [ -z "$CLIENT" ]
 then
-  ## include name of client in path
   echo "Missing name of client parameter: wget .... | bash -s [client]"
   exit
 fi
+echo $CLIENTIP
+ssh -t fd.vertel.se:/create-fd-client-cert "$CLIENT"
 
-## At the FD-server: (Fusion Directory)
-echo "Create directory and files for $CLIENT"
-
-# Check directory: (exists + rights)
-cd $CADIR
-sudo rm -rf $CLIENTDIR
-mkdir $CLIENTDIR
-cd $CLIENTDIR
-
-# Generate ssl-key
-[ -f "$CLIENT_PRIVKEY" ] || certtool --generate-privkey --sec-param Medium --outfile $CLIENT_PRIVKEY
-
-# Create info file
-echo """organization = Vertel AB
-cn = $CLIENT.vertel.se
-tls_www_server
-encryption_key
-signing_key
-expiration_days = 3650
-""" > $CLIENT.info
-
-# Create the consumer/client certificate
-
-sudo certtool --generate-certificate \
---load-privkey $CLIENT_PRIVKEY \
---load-ca-certificate $CACERT \
---load-ca-privkey $CAPRIVKEY \
---template $CLIENT.info \
---outfile $CLIENT_CERT
-
-# Get a copy of the CA certificate:
-cp $CACERT .
-
-echo CLIENT_PRIVKEY: $CLIENT_PRIVKEY
-echo CLIENT_CERT: $CLIENT_CERT
-
-# Create the file certinfo.ldif
-echo """dn: cn=config
-replace: olcTLSCertificateFile
-olcTLSCertificateFile: /usr/share/fd-vertel-se/$CLIENT_PRIVKEY
--
-replace: olcTLSCertificateKeyFile
-olcTLSCertificateKeyFile: /usr/share/fd-vertel-se/$CLIENT_CERT""" > certinfo.ldif
-
-sudo ldapmodify -Y EXTERNAL -H ldapi:/// -f certinfo.ldif
-
-# Change owner for all files
-sudo chown root:root * .
 
 #### DONE
 echo DONE! The Fusion Directory Server!
-echo Now... Copy those files to the client and do the fiddle "over there"! :-)
+echo Now... Copy those files to the client and do the fiddle over "there"! 
 
 # 10. Pull/push the collection of filez from the FD-server to the distributed client
 # Bring the collection of files from the Fusion Directory server to *this* host:

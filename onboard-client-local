@@ -14,7 +14,7 @@ echo CLIENT_CERT $CLIENT_CERT
 
 
 ## Do the server fiddle while we're at it!
-echo Do the server fiddle while we can...
+echo Do the server-fiddle while we're at it!
 ssh -t fd.vertel.se "sudo create-fd-client-cert $HOSTNAME"
 
 ## Install certtool
@@ -39,9 +39,8 @@ sudo certtool --generate-privkey \
 
 echo Do the key... done!
 
-echo Do the remote fiddle...
-
-ssh fd.vertel.se create-fd-client-cert $HOSTNAME
+#echo Do the remote fiddle...
+#ssh fd.vertel.se create-fd-client-cert $HOSTNAME
 
 echo scp -rp fd.vertel.se:/usr/share/fd-vertel-se/$CLIENTDIR /tmp
 

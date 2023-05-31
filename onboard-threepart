@@ -41,3 +41,6 @@ echo Now... Copy those files to the client and do the fiddle over "there"!
 # Note to self: Be careful using deathstar as example!
 scp -rp fd.vertel.se:/usr/share/fd-vertel-se/$CLIENTDIR 192.168.1.247:/tmp
 
+
+ssh -t 192.168.1.247 "echo Hello world!! > /tmp/hello.txt"
+

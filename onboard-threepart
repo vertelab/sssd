@@ -4,4 +4,11 @@
 # $ ssh -t remote_username@remote_host "sudo reboot"
 # deathstar = 192.168.1.247
 
-echo 'ssh -t fd.vertel.se' | 'ssh -t 192.168.1.247 "sudo reboot"'
+
+# jakob@deathstar:~$ 
+# echo 'export SSH_ASKPASS=ssh-askpass; ssh -tX fd.vertel.se "export SUDO_ASKPASS=/usr/bin/ssh-askpass; export DISPLAY=:0.0; sudo -A create-fd-client-cert deathstar"' | bash
+
+
+echo 'export SSH_ASKPASS=ssh-askpass; ssh -tX fd.vertel.se "export SUDO_ASKPASS=/usr/bin/ssh-askpass; ssh 192.168.1.247 sudo reboot"' | bash
+
+#echo 'ssh -t fd.vertel.se' | 'ssh -t 192.168.1.247 "sudo reboot"'

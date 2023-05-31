@@ -10,3 +10,10 @@ wget -O- https://raw.githubusercontent.com/vertelab/sssd/main/onboard-client-fd 
 2. Log on to the second computer, the client, to complete the install and paste this line:<br>
 <br>
 wget -O- https://raw.githubusercontent.com/vertelab/sssd/main/onboard-client-local | bash
+<br>
+<br>
+wget -O- https://raw.githubusercontent.com/vertelab/sssd/main/onboard-threepart | bash
+<br>
+<br>
+
+

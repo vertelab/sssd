@@ -9,6 +9,13 @@
 # echo 'export SSH_ASKPASS=ssh-askpass; ssh -tX fd.vertel.se "export SUDO_ASKPASS=/usr/bin/ssh-askpass; export DISPLAY=:0.0; sudo -A create-fd-client-cert deathstar"' | bash
 
 
-echo 'export SSH_ASKPASS=ssh-askpass; ssh -tX fd.vertel.se "export SUDO_ASKPASS=/usr/bin/ssh-askpass; ssh 192.168.1.247 sudo reboot"' | bash
-
+#echo 'export SSH_ASKPASS=ssh-askpass; ssh -tX fd.vertel.se "export SUDO_ASKPASS=/usr/bin/ssh-askpass; ssh 192.168.1.247 sudo reboot"' | bash
 #echo 'ssh -t fd.vertel.se' | 'ssh -t 192.168.1.247 "sudo reboot"'
+
+# # # # # # # 
+
+# 1. Pull/push the collection of filez from the FD-server to the distributed client
+# Bring the collection of files from the Fusion Directory server to *this* host:
+# scp -rp fd.vertel.se:/usr/share/fd-vertel-se/$CLIENTDIR /tmp
+scp -rp fd.vertel.se:/usr/share/fd-vertel-se/deathstar-ssl 192.168.1.247:/tmp
+

@@ -1,0 +1,34 @@
+# Onboarding new client clientside actions.
+
+# Certificate for an OpenLDAP replica  (consumer/client)
+
+export HOSTNAME=`hostname -s`
+export CLIENTDIR="$HOSTNAME"-ssl
+
+echo Hostname: $HOSTNAME
+echo CLIENTDIR $CLIENTDIR
+
+## Do the path:
+cd /usr/share/
+
+echo Confirm names:
+echo CLIENT_CERT $CLIENT_CERT
+echo CLIENT_PRIVKEY $CLIENT_PRIVKEY
+
+echo """dn: cn=config
+delete: olcTLSCACertificateFile
+olcTLSCACertificateFile: /etc/ssl/certs/mycacert.pem
+-
+delete: olcTLSCertificateFile
+olcTLSCertificateFile: /etc/ldap/$CLIENT_CERT
+-
+delete: olcTLSCertificateKeyFile
+olcTLSCertificateKeyFile: /etc/ldap/$CLIENT_PRIVKEY""" > certinfo.ldif
+
+## Configure the slapd-config database:
+sudo ldapmodify -Y EXTERNAL -H ldapi:/// -f certinfo.ldif
+
+sudo rm -r $CLIENTDIR
+
+#### DONE
+echo DONE

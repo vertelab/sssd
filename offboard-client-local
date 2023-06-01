@@ -9,7 +9,7 @@ echo Hostname: $HOSTNAME
 echo CLIENTDIR $CLIENTDIR
 
 ## Do the path:
-cd /usr/share/
+cd /usr/share/ldap/
 
 echo Confirm names:
 echo CLIENT_CERT $CLIENT_CERT

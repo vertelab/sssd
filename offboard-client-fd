@@ -22,10 +22,10 @@ cd $CLIENTDIR
 
 # Create the file certinfo.ldif -- remove the data
 echo """dn: cn=config
-remove: olcTLSCertificateFile
+delete: olcTLSCertificateFile
 olcTLSCertificateFile: /usr/share/fd-vertel-se/$CLIENT_PRIVKEY
 -
-remove: olcTLSCertificateKeyFile
+delete: olcTLSCertificateKeyFile
 olcTLSCertificateKeyFile: /usr/share/fd-vertel-se/$CLIENT_CERT""" > certinfo.ldif
 
 sudo ldapmodify -Y EXTERNAL -H ldapi:/// -f certinfo.ldif

@@ -8,7 +8,7 @@
 ssh -t 192.168.1.247 "echo Hello world!! > /tmp/hello.txt"
 
 ssh -t 192.168.1.247 "export HOSTNAME=`hostname -s` > /tmp/create-fd-client-cert"
-ssh -t 192.168.1.247 "export CLIENTDIR="$HOSTNAME"-ssl >> /tmp/create-fd-client-cert"
-ssh -t 192.168.1.247 "export CLIENT_PRIVKEY="$HOSTNAME"_slapd_key.pem >> /tmp/create-fd-client-cert"
-ssh -t 192.168.1.247 "export CLIENT_CERT="$HOSTNAME"_slapd_cert.pem >> /tmp/create-fd-client-cert"
+ssh -t 192.168.1.247 "export CLIENTDIR=\"$HOSTNAME\"-ssl >> /tmp/create-fd-client-cert"
+ssh -t 192.168.1.247 "export CLIENT_PRIVKEY=\"$HOSTNAME\"_slapd_key.pem >> /tmp/create-fd-client-cert"
+ssh -t 192.168.1.247 "export CLIENT_CERT=\"$HOSTNAME\"_slapd_cert.pem >> /tmp/create-fd-client-cert"
 

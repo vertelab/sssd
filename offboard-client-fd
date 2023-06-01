@@ -1,1 +1,38 @@
 ## do the exit
+
+# CA-Variables
+export CADIR=/usr/share/fd-vertel-se/
+export CLIENT=$1
+
+# Check $CLIENT
+if [ -z "$CLIENT" ]
+then
+  echo "Missing name of client parameter: wget .... | bash -s [client]"
+  exit
+fi
+
+echo "Deleting directory and files for $CLIENT"
+
+# Check directory: (exists + rights)
+cd $CADIR
+
+## Enter client path, remove LDAP data
+cd $CLIENTDIR
+
+
+# Create the file certinfo.ldif -- remove the data
+echo """dn: cn=config
+remove: olcTLSCertificateFile
+olcTLSCertificateFile: /usr/share/fd-vertel-se/$CLIENT_PRIVKEY
+-
+remove: olcTLSCertificateKeyFile
+olcTLSCertificateKeyFile: /usr/share/fd-vertel-se/$CLIENT_CERT""" > certinfo.ldif
+
+sudo ldapmodify -Y EXTERNAL -H ldapi:/// -f certinfo.ldif
+
+
+cd ..
+sudo rm -rf $CLIENTDIR
+
+#### DONE
+echo DONE

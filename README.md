@@ -14,6 +14,8 @@ wget -O- https://raw.githubusercontent.com/vertelab/sssd/main/onboard-client-loc
 <br>
 <br>
 <br>
+
 # sssd
+
 Offboarding clients using SSSD.
 

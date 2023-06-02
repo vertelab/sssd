@@ -25,7 +25,10 @@ echo Path ... 23 = `pwd`
 
 # Create the file certinfo.ldif -- remove the data
 sudo rm certinfo.ldif
-sudo echo """dn: cn=config
+sudo touch certinfo.ldif
+sudo chmod a+w certinfo.ldif
+
+echo """dn: cn=config
 delete: olcTLSCertificateFile
 olcTLSCertificateFile: /usr/share/fd-vertel-se/$CLIENT_PRIVKEY
 -

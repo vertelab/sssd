@@ -86,9 +86,6 @@ echo CLIENT_CERT $CLIENT_CERT
 echo CLIENT_PRIVKEY $CLIENT_PRIVKEY
 
 echo """dn: cn=config
-add: olcTLSCACertificateFile
-olcTLSCACertificateFile: /etc/ssl/certs/mycacert.pem
--
 add: olcTLSCertificateFile
 olcTLSCertificateFile: /etc/ldap/$CLIENT_CERT
 -

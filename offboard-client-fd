@@ -3,6 +3,7 @@
 # CA-Variables
 export CADIR=/usr/share/fd-vertel-se/
 export CLIENT=$1
+export CLIENTDIR="$CLIENT"-ssl
 
 # Check $CLIENT
 if [ -z "$CLIENT" ]

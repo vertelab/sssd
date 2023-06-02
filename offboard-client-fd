@@ -10,14 +10,17 @@ then
   echo "Missing name of client parameter: wget .... | bash -s [client]"
   exit
 fi
+echo Path ... 13 = `pwd`
 
 echo "Deleting directory and files for $CLIENT"
 
 # Check directory: (exists + rights)
 cd $CADIR
+echo Path ... 19 = `pwd`
 
 ## Enter client path, remove LDAP data
 cd $CLIENTDIR
+echo Path ... 23 = `pwd`
 
 # Create the file certinfo.ldif -- remove the data
 sudo rm certinfo.ldif
@@ -30,7 +33,7 @@ olcTLSCertificateKeyFile: /usr/share/fd-vertel-se/$CLIENT_CERT""" > certinfo.ldi
 
 sudo ldapmodify -Y EXTERNAL -H ldapi:/// -f certinfo.ldif
 
-echo Path ... = `pwd`
+echo Path ... 36 = `pwd`
 cd ..
 sudo rm -rf $CLIENTDIR
 

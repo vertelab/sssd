@@ -30,7 +30,7 @@ olcTLSCertificateKeyFile: /usr/share/fd-vertel-se/$CLIENT_CERT""" > certinfo.ldi
 
 sudo ldapmodify -Y EXTERNAL -H ldapi:/// -f certinfo.ldif
 
-echo Path ... = "pwd"
+echo Path ... = `pwd`
 cd ..
 sudo rm -rf $CLIENTDIR
 

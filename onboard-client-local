@@ -61,13 +61,14 @@ rm -r /tmp/$CLIENTDIR
 
 echo chown root:root -R /usr/share/ldap/$CLIENTDIR
 sudo chown root:root -R /usr/share/ldap/$CLIENTDIR
-echo chmod 0640 -R /usr/share/ldap/$CLIENTDIR
-sudo chmod 0640 -R /usr/share/ldap/$CLIENTDIR
+echo chmod 755 -R /usr/share/ldap/$CLIENTDIR
+sudo chmod 755 -R /usr/share/ldap/$CLIENTDIR
 
 echo Install certs ... and modify...
+echo CD /usr/share/ldap/$CLIENTDIR
 cd /usr/share/ldap/$CLIENTDIR
-echo Now is path... 69 = `pwd`
-echo Files in path... 70 = `ls | wc -l`
+echo Now is path... 70 = `pwd`
+echo Files in path... 71 = `ls | wc -l`
 
 ## Install these cert's that was just copied:
 

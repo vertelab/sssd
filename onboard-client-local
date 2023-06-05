@@ -65,8 +65,9 @@ echo chmod 0640 -R /usr/share/ldap/$CLIENTDIR
 sudo chmod 0640 -R /usr/share/ldap/$CLIENTDIR
 
 echo Install certs ... and modify...
-echo Now is path... 65 = `pwd`
-echo Files in path... 66 = `ls | wc -l`
+cd /usr/share/ldap/$CLIENTDIR
+echo Now is path... 69 = `pwd`
+echo Files in path... 70 = `ls | wc -l`
 
 ## Install these cert's that was just copied:
 

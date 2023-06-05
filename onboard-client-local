@@ -14,7 +14,7 @@ echo CLIENT_CERT $CLIENT_CERT
 
 
 ## Do the server fiddle while we're at it!
-echo Do the server-fiddle while we're at it!
+echo Do the server-fiddle while we're at it
 ssh -t fd.vertel.se "sudo create-fd-client-cert $HOSTNAME"
 
 ## Install certtool

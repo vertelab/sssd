@@ -10,6 +10,7 @@ echo CLIENTDIR $CLIENTDIR
 
 ## Do the path:
 cd /usr/share/ldap/
+echo Path ... 13 = `pwd`
 
 echo Confirm names:
 echo CLIENT_CERT $CLIENT_CERT
@@ -28,6 +29,7 @@ olcTLSCertificateKeyFile: /etc/ldap/$CLIENT_PRIVKEY""" > certinfo.ldif
 ## Configure the slapd-config database:
 sudo ldapmodify -Y EXTERNAL -H ldapi:/// -f certinfo.ldif
 
+echo Path ... 32 = `pwd`
 sudo rm -r $CLIENTDIR
 
 #### DONE

@@ -65,7 +65,7 @@ echo chmod 755 -R /usr/share/ldap/$CLIENTDIR
 sudo chmod 755 -R /usr/share/ldap/$CLIENTDIR
 
 echo Install certs ... and modify...
-echo CD /usr/share/ldap/$CLIENTDIR
+echo cd /usr/share/ldap/$CLIENTDIR
 cd /usr/share/ldap/$CLIENTDIR
 echo Now is path... 70 = `pwd`
 echo Files in path... 71 = `ls | wc -l`
@@ -87,9 +87,9 @@ sudo update-ca-certificates
 
 ## Create the file certinfo.ldif ...
 echo Create the file certinfo.ldif ...
-echo Now is path... 85 = `pwd`
+echo Now is path... 90 = `pwd`
 
-echo touch + a+w certinfo.ldif ... 87
+echo touch + a+w >> certinfo.ldif ... 92
 sudo touch certinfo.ldif
 sudo chmod a+w certinfo.ldif
 
@@ -104,7 +104,7 @@ olcTLSCertificateFile: /etc/ldap/$CLIENT_CERT
 add: olcTLSCertificateKeyFile
 olcTLSCertificateKeyFile: /etc/ldap/$CLIENT_PRIVKEY""" > certinfo.ldif
 
-echo Now is path... 91 = `pwd`
+echo Now is path... 107 = `pwd`
 # Change owner for all files
 #sudo chown root:root * .
 

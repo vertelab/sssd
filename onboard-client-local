@@ -46,10 +46,13 @@ echo scp -rp fd.vertel.se:/usr/share/fd-vertel-se/$CLIENTDIR /tmp
 
 # Bring the collection of files from the Fusion Directory server to *this* host:
 scp -rp fd.vertel.se:/usr/share/fd-vertel-se/$CLIENTDIR /tmp
-echo Now is path... 42 = `pwd`
+echo Now is path... 49 = `pwd`
+echo Look at TMP! ls /tmp/$CLIENTDIR
+ls /tmp/$CLIENTDIR
 
 echo Copy the files...
 echo make folder ldap in usr/share/
+sudo rm -r /usr/share/ldap
 sudo mkdir /usr/share/ldap
 echo copy data... from /tmp/ ... to /usr/share/ldap + $CLIENTDIR
 sudo cp -r /tmp/$CLIENTDIR /usr/share/ldap/

@@ -31,6 +31,9 @@ sudo ldapmodify -Y EXTERNAL -H ldapi:/// -f certinfo.ldif
 
 echo Path ... 32 = `pwd`
 sudo rm -r $CLIENTDIR
+cd /usr/share/
+sudo rm -r ldap
+echo Path ... 36 = `pwd`
 
 #### DONE
 echo DONE

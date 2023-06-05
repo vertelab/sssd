@@ -15,6 +15,12 @@ echo Path ... 13 = `pwd`
 echo Confirm names:
 echo CLIENT_CERT $CLIENT_CERT
 echo CLIENT_PRIVKEY $CLIENT_PRIVKEY
+echo Path ... 18 = `pwd`
+
+# Create the file certinfo.ldif
+echo touch + chmod a+w >> certinfo.ldif ... 21
+sudo touch certinfo.ldif
+sudo chmod a+w certinfo.ldif
 
 echo """dn: cn=config
 delete: olcTLSCACertificateFile

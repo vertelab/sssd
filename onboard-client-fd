@@ -54,8 +54,8 @@ echo CLIENT_PRIVKEY: $CLIENT_PRIVKEY
 echo CLIENT_CERT: $CLIENT_CERT
 echo Path ... 55 = `pwd`
 
-echo a+w $CLIENTDIR ... 57
-sudo chmod a+w $CLIENTDIR -R
+echo chmod 755 $CLIENTDIR ... 57
+sudo chmod 755 $CLIENTDIR -R
 
 # Create the file certinfo.ldif
 echo touch + a+w certinfo.ldif ... 58

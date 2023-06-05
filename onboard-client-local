@@ -49,18 +49,21 @@ scp -rp fd.vertel.se:/usr/share/fd-vertel-se/$CLIENTDIR /tmp
 echo Now is path... 42 = `pwd`
 
 echo Copy the files...
-sudo cp -r /tmp/$CLIENTDIR /usr/share/
+echo make folder ldap in usr/share/
+sudo mkdir /usr/share/ldap
+echo copy data... from /tmp/ ... to /usr/share/ldap + $CLIENTDIR
+sudo cp -r /tmp/$CLIENTDIR /usr/share/ldap/
 echo The copy is complete!
 rm -r /tmp/$CLIENTDIR
 
-echo chown root:root -R /usr/share/$CLIENTDIR
-sudo chown root:root -R /usr/share/$CLIENTDIR
-echo chmod 0640 -R /usr/share/$CLIENTDIR
-sudo chmod 0640 -R /usr/share/$CLIENTDIR
+echo chown root:root -R /usr/share/ldap/$CLIENTDIR
+sudo chown root:root -R /usr/share/ldap/$CLIENTDIR
+echo chmod 0640 -R /usr/share/ldap/$CLIENTDIR
+sudo chmod 0640 -R /usr/share/ldap/$CLIENTDIR
 
 echo Install certs ... and modify...
-echo Now is path... 55 = `pwd`
-echo Files in path... 56 = `ls | wc -l`
+echo Now is path... 65 = `pwd`
+echo Files in path... 66 = `ls | wc -l`
 
 ## Install these cert's that was just copied:
 
@@ -68,7 +71,7 @@ echo Files in path... 56 = `ls | wc -l`
 sudo cp -v $CLIENT_CERT $CLIENT_PRIVKEY /etc/ldap
 #sudo cp -v $CLIENT_CERT /etc/ldap/
 #sudo cp -v $CLIENT_PRIVKEY /etc/ldap/
-echo Files in path... 64 = `ls | wc -l`
+echo Files in path... 74 = `ls | wc -l`
 
 ## sudo chgrp openldap /etc/ldap/deathstar_slapd_key.pem
 ## sudo chgrp openldap 
@@ -79,9 +82,9 @@ sudo update-ca-certificates
 
 ## Create the file certinfo.ldif ...
 echo Create the file certinfo.ldif ...
-echo Now is path... 75 = `pwd`
+echo Now is path... 85 = `pwd`
 
-echo touch + a+w certinfo.ldif ... 84
+echo touch + a+w certinfo.ldif ... 87
 sudo touch certinfo.ldif
 sudo chmod a+w certinfo.ldif
 

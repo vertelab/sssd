@@ -23,16 +23,18 @@ echo Path ... 22 = `pwd`
 
 # Check directory: (exists + rights)
 cd $CADIR
-# sudo rm -rf $CLIENTDIR
+sudo rm -rf $CLIENTDIR
 sudo mkdir $CLIENTDIR
+echo Path ... 28 = `pwd`
 cd $CLIENTDIR
+echo Path ... 30 = `pwd`
 
 # Generate ssl-key
 [ -f "$CLIENT_PRIVKEY" ] || certtool --generate-privkey --sec-param Medium --outfile $CLIENT_PRIVKEY
 
 
 # Create the file $CLIENT.info
-echo touch + a+w >> $CLIENT.info ... 35
+echo touch + a+w >> $CLIENT.info ... 37
 sudo touch $CLIENT.info
 sudo chmod a+w $CLIENT.info
 
@@ -61,11 +63,11 @@ echo CLIENT_PRIVKEY: $CLIENT_PRIVKEY
 echo CLIENT_CERT: $CLIENT_CERT
 echo Path ... 55 = `pwd`
 
-echo chmod 755 $CLIENTDIR ... 57
+echo chmod 755 $CLIENTDIR ... 66
 sudo chmod 755 $CLIENTDIR -R
 
 # Create the file certinfo.ldif
-echo touch + a+w certinfo.ldif ... 58
+echo touch + a+w certinfo.ldif ... 70
 sudo touch certinfo.ldif
 sudo chmod a+w certinfo.ldif
 

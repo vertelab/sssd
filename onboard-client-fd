@@ -74,13 +74,13 @@ cp $CACERT .
 
 echo CLIENT_PRIVKEY: $CLIENT_PRIVKEY
 echo CLIENT_CERT: $CLIENT_CERT
-echo Path ... 55 = `pwd`
+echo Path ... 77 = `pwd`
 
-echo chmod 755 $CLIENTDIR ... 66
-sudo chmod 755 $CLIENTDIR -R
+echo chmod 755 $CLIENTDIR ... 79
+sudo chmod 755 . -R
 
 # Create the file certinfo.ldif
-echo touch + a+w certinfo.ldif ... 70
+echo touch + a+w certinfo.ldif ... 83
 sudo touch certinfo.ldif
 sudo chmod a+w certinfo.ldif
 

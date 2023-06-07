@@ -88,7 +88,7 @@ echo """dn: cn=config
 replace: olcTLSCACertificateFile
 olcTLSCACertificateFile: /etc/ssl/certs/mycacert.pem
 -
-add: olcTLSCertificateFile
+replace: olcTLSCertificateFile
 olcTLSCertificateFile: /usr/share/fd-vertel-se/$CLIENT_PRIVKEY
 -
 add: olcTLSCertificateKeyFile

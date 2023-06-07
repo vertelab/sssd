@@ -85,6 +85,9 @@ sudo touch certinfo.ldif
 sudo chmod a+w certinfo.ldif
 
 echo """dn: cn=config
+add: olcTLSCACertificateFile
+olcTLSCACertificateFile: /etc/ssl/certs/mycacert.pem
+-
 add: olcTLSCertificateFile
 olcTLSCertificateFile: /usr/share/fd-vertel-se/$CLIENT_PRIVKEY
 -

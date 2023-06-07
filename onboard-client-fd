@@ -28,8 +28,8 @@ sudo mkdir $CLIENTDIR
 echo Path ... 28 = `pwd`
 cd $CLIENTDIR
 echo Path ... 30 = `pwd`
-echo Generate ssl-key  31 = $CLIENT_PRIVKEY
-echo touch + a+w >> $CLIENT_PRIVKEY ... 32
+echo Generate ssl-key  = $CLIENT_PRIVKEY 31
+echo touch + a+w $CLIENT_PRIVKEY ... 32
 sudo touch $CLIENT_PRIVKEY
 sudo chmod a+w $CLIENT_PRIVKEY
 
@@ -38,7 +38,7 @@ sudo chmod a+w $CLIENT_PRIVKEY
 
 
 # Create the file $CLIENT.info
-echo touch + a+w >> $CLIENT.info ... 37
+echo touch + a+w $CLIENT.info ... 37
 sudo touch $CLIENT.info
 sudo chmod a+w $CLIENT.info
 

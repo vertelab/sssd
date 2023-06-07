@@ -54,6 +54,7 @@ expiration_days = 3650
 echo Success to create info file = $CLIENT.info... 54
 
 # Create the consumer/client certificate
+echo certtool --generate-certificate :: Create $CLIENT_CERT ... 57
 
 sudo certtool --generate-certificate \
 --load-privkey $CLIENT_PRIVKEY \

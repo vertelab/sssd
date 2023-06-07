@@ -28,6 +28,10 @@ sudo mkdir $CLIENTDIR
 echo Path ... 28 = `pwd`
 cd $CLIENTDIR
 echo Path ... 30 = `pwd`
+echo Generate ssl-key  31 = $CLIENT_PRIVKEY
+echo touch + a+w >> $CLIENT_PRIVKEY ... 32
+sudo touch $CLIENT_PRIVKEY
+sudo chmod a+w $CLIENT_PRIVKEY
 
 # Generate ssl-key
 [ -f "$CLIENT_PRIVKEY" ] || certtool --generate-privkey --sec-param Medium --outfile $CLIENT_PRIVKEY

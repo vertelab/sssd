@@ -18,7 +18,10 @@ then
   exit
 fi
 
-echo "Create directory and files for $CLIENT"
+echo "Create directory and files for $CLIENTDIR ... 21"
+echo Path ... 22 = `pwd`
+echo sudo -s
+sudo -s
 
 # Check directory: (exists + rights)
 cd $CADIR

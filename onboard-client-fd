@@ -85,7 +85,7 @@ sudo touch certinfo.ldif
 sudo chmod a+w certinfo.ldif
 
 echo """dn: cn=config
-add: olcTLSCACertificateFile
+replace: olcTLSCACertificateFile
 olcTLSCACertificateFile: /etc/ssl/certs/mycacert.pem
 -
 add: olcTLSCertificateFile

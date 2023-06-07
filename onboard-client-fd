@@ -67,6 +67,7 @@ echo certtool --generate-certificate :: Create $CLIENT_CERT  // Done!... 65
 # Get a copy of the CA certificate:
 echo Get a copy of the CA certificate: $CACERT ... 68
 echo Path ... 69 = `pwd`
+echo copy file to the current path: cp $CACERT . ... 70
 cp $CACERT .
 
 echo CLIENT_PRIVKEY: $CLIENT_PRIVKEY

@@ -35,13 +35,13 @@ echo Generate ssl-key  = $CLIENT_PRIVKEY 31
 sudo certtool --generate-privkey --sec-param Medium --outfile $CLIENT_PRIVKEY
 
 echo Path ... 37 = `pwd`
-echo chmod a+w $CLIENT_PRIVKEY ... 38
-sudo chmod a+w $CLIENT_PRIVKEY
+echo chmod g+w $CLIENT_PRIVKEY ... 38
+sudo chmod g+w $CLIENT_PRIVKEY
 
 # Create the file $CLIENT.info
-echo touch + a+w $CLIENT.info ... 41
+echo touch + g+w $CLIENT.info ... 41
 sudo touch $CLIENT.info
-sudo chmod a+w $CLIENT.info
+sudo chmod g+w $CLIENT.info
 
 echo Create info file = $CLIENT.info... 42
 # Create info file
@@ -76,9 +76,9 @@ echo CLIENT_CERT: $CLIENT_CERT ... 75
 echo Path ... 76 = `pwd`
 
 # Create the file certinfo.ldif
-echo touch + a+w certinfo.ldif ... 83
+echo touch + g+w certinfo.ldif ... 83
 sudo touch certinfo.ldif
-sudo chmod a+w certinfo.ldif
+sudo chmod g+w certinfo.ldif
 
 echo do the certinfo.ldif -procedure! ... 87
 echo """dn: cn=config

@@ -76,9 +76,9 @@ echo CLIENT_CERT: $CLIENT_CERT ... 75
 echo Path ... 76 = `pwd`
 
 # Create the file certinfo.ldif
-echo touch + g+w certinfo.ldif ... 83
+echo touch + a+w certinfo.ldif ... 83
 sudo touch certinfo.ldif
-sudo chmod g+w certinfo.ldif
+sudo chmod a+w certinfo.ldif
 
 echo do the certinfo.ldif -procedure! ... 87
 echo """dn: cn=config

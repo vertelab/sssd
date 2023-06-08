@@ -71,12 +71,9 @@ echo Path ... 69 = `pwd`
 echo copy file to the current path: cp $CACERT . ... 70
 sudo cp $CACERT .
 
-echo CLIENT_PRIVKEY: $CLIENT_PRIVKEY
-echo CLIENT_CERT: $CLIENT_CERT
-echo Path ... 72 = `pwd`
-
-echo chmod a+w $CLIENTDIR ... 75
-#sudo chmod 775 . -R
+echo CLIENT_PRIVKEY: $CLIENT_PRIVKEY ... 74
+echo CLIENT_CERT: $CLIENT_CERT ... 75
+echo Path ... 76 = `pwd`
 
 # Create the file certinfo.ldif
 echo touch + a+w certinfo.ldif ... 83

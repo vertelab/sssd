@@ -76,8 +76,8 @@ echo CLIENT_PRIVKEY: $CLIENT_PRIVKEY
 echo CLIENT_CERT: $CLIENT_CERT
 echo Path ... 77 = `pwd`
 
-echo chmod 770 $CLIENTDIR ... 79
-sudo chmod 770 . -R
+echo chmod 775 $CLIENTDIR ... 79
+sudo chmod 775 . -R
 
 # Create the file certinfo.ldif
 echo touch + a+w certinfo.ldif ... 83
@@ -98,7 +98,7 @@ olcTLSCertificateKeyFile: /usr/share/fd-vertel-se/$CLIENT_CERT""" > certinfo.ldi
 sudo ldapmodify -Y EXTERNAL -H ldapi:/// -f certinfo.ldif
 
 # Change owner for all files
-sudo chown root:root * .
+sudo chown root:root . -R
 
 #### DONE
 echo DONE

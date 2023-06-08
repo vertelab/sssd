@@ -34,6 +34,10 @@ echo Generate ssl-key  = $CLIENT_PRIVKEY 31
 # [ -f "$CLIENT_PRIVKEY" ] || certtool --generate-privkey --sec-param Medium --outfile $CLIENT_PRIVKEY
 sudo certtool --generate-privkey --sec-param Medium --outfile $CLIENT_PRIVKEY
 
+echo Path ... 37 = `pwd`
+echo chmod a+w $CLIENT_PRIVKEY ... 38
+sudo chmod a+w $CLIENT_PRIVKEY
+
 # Create the file $CLIENT.info
 echo touch + a+w $CLIENT.info ... 41
 sudo touch $CLIENT.info

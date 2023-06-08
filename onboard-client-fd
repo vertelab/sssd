@@ -23,7 +23,7 @@ echo Path ... 22 = `pwd`
 
 # Check directory: (exists + rights)
 cd $CADIR
-####### sudo rm -rf $CLIENTDIR
+sudo rm -rf $CLIENTDIR
 sudo mkdir $CLIENTDIR
 echo Path ... 28 = `pwd`
 cd $CLIENTDIR

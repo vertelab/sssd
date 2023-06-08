@@ -17,18 +17,20 @@ echo CLIENT_CERT $CLIENT_CERT
 #echo Do the server-fiddle while we're at it
 #ssh -t fd.vertel.se "sudo create-fd-client-cert $HOSTNAME"
 
+echo install software ... 20
 ## Install certtool
 sudo apt install gnutls-bin
 sudo apt install ldap-utils
 sudo systemctl restart syslog.service
 ## Install for SSSD
 sudo apt install sssd-ldap ldap-utils
+echo install complete ... 27
 
 ## Do the path:
 cd /usr/share/
 sudo rm -r $CLIENTDIR
 sudo mkdir $CLIENTDIR
-echo Do the path...
+echo Do the path... 33
 
 cd $CLIENTDIR
 
@@ -36,8 +38,7 @@ cd $CLIENTDIR
 sudo certtool --generate-privkey \
 --sec-param Medium \
 --outfile $CLIENT_PRIVKEY
-
-echo Do the key... done!
+echo Do the key... done! 41
 
 #echo Do the remote fiddle...
 #ssh fd.vertel.se create-fd-client-cert $HOSTNAME

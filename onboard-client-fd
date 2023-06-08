@@ -34,13 +34,12 @@ echo Generate ssl-key  = $CLIENT_PRIVKEY 31
 # [ -f "$CLIENT_PRIVKEY" ] || certtool --generate-privkey --sec-param Medium --outfile $CLIENT_PRIVKEY
 sudo certtool --generate-privkey --sec-param Medium --outfile $CLIENT_PRIVKEY
 
-
 # Create the file $CLIENT.info
 echo touch + a+w $CLIENT.info ... 41
 sudo touch $CLIENT.info
 sudo chmod a+w $CLIENT.info
 
-echo Create info file = $CLIENT.info... 45
+echo Create info file = $CLIENT.info... 42
 # Create info file
 echo """organization = Vertel AB
 cn = $CLIENT.vertel.se
@@ -49,10 +48,10 @@ encryption_key
 signing_key
 expiration_days = 3650
 """ > $CLIENT.info
-echo Success to create info file = $CLIENT.info... 54
+echo Success to create info file = $CLIENT.info... 51
 
 # Create the consumer/client certificate
-echo certtool --generate-certificate :: Create $CLIENT_CERT ... 57
+echo certtool --generate-certificate :: Create $CLIENT_CERT ... 54
 
 sudo certtool --generate-certificate \
 --load-privkey $CLIENT_PRIVKEY \
@@ -70,9 +69,9 @@ sudo cp $CACERT .
 
 echo CLIENT_PRIVKEY: $CLIENT_PRIVKEY
 echo CLIENT_CERT: $CLIENT_CERT
-echo Path ... 77 = `pwd`
+echo Path ... 72 = `pwd`
 
-echo chmod 775 $CLIENTDIR ... 75
+echo chmod a+w $CLIENTDIR ... 75
 #sudo chmod 775 . -R
 
 # Create the file certinfo.ldif

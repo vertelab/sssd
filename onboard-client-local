@@ -81,7 +81,8 @@ echo Files in path... 74 = `ls | wc -l`
 ## sudo chgrp openldap /etc/ldap/deathstar_slapd_key.pem
 ## sudo chgrp openldap 
 ## sudo chmod 0640 /etc/ldap/deathstar_slapd_key.pem
-sudo chmod 0640 /etc/ldap/$CLIENT_PRIVKEY
+## sudo chmod 0640 /etc/ldap/$CLIENT_PRIVKEY
+sudo chmod 760 /etc/ldap/$CLIENT_PRIVKEY
 sudo cp -r mycacert.pem /usr/local/share/ca-certificates/mycacert.crt
 sudo update-ca-certificates
 

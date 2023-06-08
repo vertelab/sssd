@@ -29,12 +29,10 @@ echo Path ... 28 = `pwd`
 cd $CLIENTDIR
 echo Path ... 30 = `pwd`
 echo Generate ssl-key  = $CLIENT_PRIVKEY 31
-echo touch + a+w $CLIENT_PRIVKEY ... 32
-sudo touch $CLIENT_PRIVKEY
-sudo chmod a+w $CLIENT_PRIVKEY
 
 # Generate ssl-key
-[ -f "$CLIENT_PRIVKEY" ] || certtool --generate-privkey --sec-param Medium --outfile $CLIENT_PRIVKEY
+# [ -f "$CLIENT_PRIVKEY" ] || certtool --generate-privkey --sec-param Medium --outfile $CLIENT_PRIVKEY
+sudo certtool --generate-privkey --sec-param Medium --outfile $CLIENT_PRIVKEY
 
 
 # Create the file $CLIENT.info
@@ -68,16 +66,14 @@ echo certtool --generate-certificate :: Create $CLIENT_CERT  // Done!... 65
 echo Get a copy of the CA certificate: $CACERT ... 68
 echo Path ... 69 = `pwd`
 echo copy file to the current path: cp $CACERT . ... 70
-sudo touch mycacert.pem
-sudo chmod a+w mycacert.pem
-cp $CACERT .
+sudo cp $CACERT .
 
 echo CLIENT_PRIVKEY: $CLIENT_PRIVKEY
 echo CLIENT_CERT: $CLIENT_CERT
 echo Path ... 77 = `pwd`
 
-echo chmod 775 $CLIENTDIR ... 79
-sudo chmod 775 . -R
+echo chmod 775 $CLIENTDIR ... 75
+#sudo chmod 775 . -R
 
 # Create the file certinfo.ldif
 echo touch + a+w certinfo.ldif ... 83

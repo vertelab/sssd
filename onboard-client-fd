@@ -78,7 +78,8 @@ echo Path ... 76 = `pwd`
 # Create the file certinfo.ldif
 echo touch + a+w certinfo.ldif ... 83
 sudo touch certinfo.ldif
-sudo chmod a+w certinfo.ldif
+# sudo chmod a+w certinfo.ldif
+sudo chmod 666 certinfo.ldif
 
 echo do the certinfo.ldif -procedure! ... 87
 echo """dn: cn=config
@@ -94,8 +95,8 @@ olcTLSCertificateKeyFile: /usr/share/fd-vertel-se/$CLIENT_CERT""" > certinfo.ldi
 sudo ldapmodify -Y EXTERNAL -H ldapi:/// -f certinfo.ldif
 
 echo Make correct chown to slapd-files: 96
-sudo chmod 660 $CLIENT_CERT
-sudo chmod 660 $CLIENT_PRIVKEY
+sudo chmod 666 $CLIENT_CERT
+sudo chmod 666 $CLIENT_PRIVKEY
 
 # Change owner for all files
 sudo chown root:root . -R

@@ -53,53 +53,14 @@ echo Look at TMP! ls /tmp/$CLIENTDIR
 echo List of downloading files...
 ls /tmp/$CLIENTDIR
 
-echo Copy the files...
-echo make folder ldap in usr/share/
-sudo rm -r /usr/share/ldap
-sudo mkdir /usr/share/ldap
-cd /usr/share/ldap/
-echo Now is path ... 61 = `pwd`
-echo copy data... from /tmp/ ... to /usr/share/ldap + $CLIENTDIR
-sudo cp -r /tmp/$CLIENTDIR /usr/share/ldap/
-echo Show the folder! 64
-ls
-echo The copy is complete!
-echo remove... rm -r /tmp/$CLIENTDIR 67
-rm -r /tmp/$CLIENTDIR
-
-echo chown root:root -R /usr/share/ldap/$CLIENTDIR
-sudo chown root:root -R /usr/share/ldap/$CLIENTDIR
-echo chmod 666 -R /usr/share/ldap/$CLIENTDIR
-
-sudo chmod 666 -R /usr/share/ldap/$CLIENTDIR/$HOSTNAME.info
-sudo chmod 666 -R /usr/share/ldap/$CLIENTDIR/$CLIENT_PRIVKEY.info
-sudo chmod 666 -R /usr/share/ldap/$CLIENTDIR/&CLIENT_CERT/$HOSTNAME.info
-sudo chmod 666 -R /usr/share/ldap/$CLIENTDIR/mycacert.pem
-sudo chmod 666 -R /usr/share/ldap/$CLIENTDIR/certinfo.ldif
-
-export CLIENT_PRIVKEY="$HOSTNAME"_slapd_key.pem
-export CLIENT_CERT="$HOSTNAME"_slapd_cert.pem
-
-
+echo Copy the files...  /etc/ldap... 56
+sudo cp -r /tmp/$CLIENTDIR /etc/ldap/
 echo Install certs ... and modify...
-echo cd /usr/share/ldap/$CLIENTDIR
-cd /usr/share/ldap/$CLIENTDIR
-echo Now is path... 71 = `pwd`
-echo Files in path... 72 = `ls | wc -l`
 
-## Install these cert's that was just copied:
 
-## sudo cp deathstar_slapd_cert.pem deathstar_slapd_key.pem /etc/ldap
-sudo cp -v $CLIENT_CERT $CLIENT_PRIVKEY /etc/ldap
-#sudo cp -v $CLIENT_CERT /etc/ldap/
-#sudo cp -v $CLIENT_PRIVKEY /etc/ldap/
-echo Files in path... 80 = `ls | wc -l`
-
-## sudo chgrp openldap /etc/ldap/deathstar_slapd_key.pem
-## sudo chgrp openldap 
 ## sudo chmod 0640 /etc/ldap/deathstar_slapd_key.pem
 ## sudo chmod 0640 /etc/ldap/$CLIENT_PRIVKEY
-sudo chmod 666 /etc/ldap/$CLIENT_PRIVKEY
+sudo chmod 0640 /etc/ldap/$CLIENT_PRIVKEY
 sudo cp -r mycacert.pem /usr/local/share/ca-certificates/mycacert.crt
 sudo update-ca-certificates
 

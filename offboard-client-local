@@ -19,9 +19,9 @@ echo Path ... 18 = `pwd`
 
 # Create the file certinfo.ldif
 sudo rm certinfo.ldif
-echo touch + chmod a+w >> certinfo.ldif ... 22
+echo touch + chmod 666 certinfo.ldif ... 22
 sudo touch certinfo.ldif
-sudo chmod a+w certinfo.ldif
+sudo chmod 666 certinfo.ldif
 
 echo """dn: cn=config
 delete: olcTLSCertificateFile

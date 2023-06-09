@@ -29,9 +29,9 @@ echo install software ... complete ... 28
 
 ## Do the path:
 cd /usr/share/
-sudo rm -r $CLIENTDIR
-sudo mkdir $CLIENTDIR
-echo Do the path... 34
+sudo rm -r ldap/$CLIENTDIR
+sudo mkdir ldap/$CLIENTDIR
+echo Do the path... 34 = `pwd`
 
 cd $CLIENTDIR
 

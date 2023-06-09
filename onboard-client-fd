@@ -70,6 +70,7 @@ echo Get a copy of the CA certificate: $CACERT ... 68
 echo Path ... 69 = `pwd`
 echo copy file to the current path: cp $CACERT . ... 70
 sudo cp $CACERT .
+sudo chmod 666 $CACERT
 
 echo CLIENT_PRIVKEY: $CLIENT_PRIVKEY ... 74
 echo CLIENT_CERT: $CLIENT_CERT ... 75

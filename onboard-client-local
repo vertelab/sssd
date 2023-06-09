@@ -27,19 +27,15 @@ sudo systemctl restart syslog.service
 sudo apt install sssd-ldap ldap-utils
 echo install software ... complete ... 28
 
-## Do the path:
-cd /usr/share/
-sudo rm -r ldap/$CLIENTDIR
-sudo mkdir ldap/$CLIENTDIR
-echo Do the path... 34 = `pwd`
-
-cd $CLIENTDIR
-
+echo Change directory ... 30
+cd /etc/ldap/
+echo The path ... 32 = `tmp`
+echo Do the key ...
 # Do the key:
 sudo certtool --generate-privkey \
 --sec-param Medium \
 --outfile $CLIENT_PRIVKEY
-echo Do the key... done! 41
+echo Do the key... done! 38
 
 # echo Do the remote fiddle...
 # ssh fd.vertel.se create-fd-client-cert $HOSTNAME

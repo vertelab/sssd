@@ -19,18 +19,19 @@ echo CLIENT_CERT $CLIENT_CERT
 
 echo install software ... 20
 ## Install certtool
+sudo apt update
 sudo apt install gnutls-bin
 sudo apt install ldap-utils
 sudo systemctl restart syslog.service
 ## Install for SSSD
 sudo apt install sssd-ldap ldap-utils
-echo install complete ... 27
+echo install software ... complete ... 28
 
 ## Do the path:
 cd /usr/share/
 sudo rm -r $CLIENTDIR
 sudo mkdir $CLIENTDIR
-echo Do the path... 33
+echo Do the path... 34
 
 cd $CLIENTDIR
 
@@ -40,30 +41,45 @@ sudo certtool --generate-privkey \
 --outfile $CLIENT_PRIVKEY
 echo Do the key... done! 41
 
-#echo Do the remote fiddle...
-#ssh fd.vertel.se create-fd-client-cert $HOSTNAME
+# echo Do the remote fiddle...
+# ssh fd.vertel.se create-fd-client-cert $HOSTNAME
 
 echo scp -rp fd.vertel.se:/usr/share/fd-vertel-se/$CLIENTDIR /tmp
 
 # Bring the collection of files from the Fusion Directory server to *this* host:
 scp -rp fd.vertel.se:/usr/share/fd-vertel-se/$CLIENTDIR /tmp
-echo Now is path... 50 = `pwd`
+echo Now is path... 51 = `pwd`
 echo Look at TMP! ls /tmp/$CLIENTDIR
+echo List of downloading files...
 ls /tmp/$CLIENTDIR
 
 echo Copy the files...
 echo make folder ldap in usr/share/
 sudo rm -r /usr/share/ldap
 sudo mkdir /usr/share/ldap
+cd /usr/share/ldap/
+echo Now is path ... 61 = `pwd`
 echo copy data... from /tmp/ ... to /usr/share/ldap + $CLIENTDIR
 sudo cp -r /tmp/$CLIENTDIR /usr/share/ldap/
+echo Show the folder! 64
+ls
 echo The copy is complete!
+echo remove... rm -r /tmp/$CLIENTDIR 67
 rm -r /tmp/$CLIENTDIR
 
 echo chown root:root -R /usr/share/ldap/$CLIENTDIR
 sudo chown root:root -R /usr/share/ldap/$CLIENTDIR
 echo chmod 666 -R /usr/share/ldap/$CLIENTDIR
-sudo chmod 666 -R /usr/share/ldap/$CLIENTDIR
+
+sudo chmod 666 -R /usr/share/ldap/$CLIENTDIR/$HOSTNAME.info
+sudo chmod 666 -R /usr/share/ldap/$CLIENTDIR/$CLIENT_PRIVKEY.info
+sudo chmod 666 -R /usr/share/ldap/$CLIENTDIR/&CLIENT_CERT/$HOSTNAME.info
+sudo chmod 666 -R /usr/share/ldap/$CLIENTDIR/mycacert.pem
+sudo chmod 666 -R /usr/share/ldap/$CLIENTDIR/certinfo.ldif
+
+export CLIENT_PRIVKEY="$HOSTNAME"_slapd_key.pem
+export CLIENT_CERT="$HOSTNAME"_slapd_cert.pem
+
 
 echo Install certs ... and modify...
 echo cd /usr/share/ldap/$CLIENTDIR

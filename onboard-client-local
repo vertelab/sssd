@@ -30,7 +30,7 @@ echo install software ... complete ... 28
 echo Change directory ... 30
 cd /etc/ldap/
 echo The path ... 32 = `tmp`
-echo Do the key ...
+echo Do the key ... 33
 # Do the key:
 sudo certtool --generate-privkey \
 --sec-param Medium \

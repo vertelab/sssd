@@ -47,7 +47,7 @@ echo scp -rp fd.vertel.se:/usr/share/fd-vertel-se/$CLIENTDIR /tmp
 
 # Bring the collection of files from the Fusion Directory server to *this* host:
 scp -rp fd.vertel.se:/usr/share/fd-vertel-se/$CLIENTDIR /tmp
-echo Now is path... 49 = `pwd`
+echo Now is path... 50 = `pwd`
 echo Look at TMP! ls /tmp/$CLIENTDIR
 ls /tmp/$CLIENTDIR
 
@@ -62,14 +62,14 @@ rm -r /tmp/$CLIENTDIR
 
 echo chown root:root -R /usr/share/ldap/$CLIENTDIR
 sudo chown root:root -R /usr/share/ldap/$CLIENTDIR
-echo chmod 755 -R /usr/share/ldap/$CLIENTDIR
-sudo chmod 755 -R /usr/share/ldap/$CLIENTDIR
+echo chmod 666 -R /usr/share/ldap/$CLIENTDIR
+sudo chmod 666 -R /usr/share/ldap/$CLIENTDIR
 
 echo Install certs ... and modify...
 echo cd /usr/share/ldap/$CLIENTDIR
 cd /usr/share/ldap/$CLIENTDIR
-echo Now is path... 70 = `pwd`
-echo Files in path... 71 = `ls | wc -l`
+echo Now is path... 71 = `pwd`
+echo Files in path... 72 = `ls | wc -l`
 
 ## Install these cert's that was just copied:
 
@@ -77,23 +77,23 @@ echo Files in path... 71 = `ls | wc -l`
 sudo cp -v $CLIENT_CERT $CLIENT_PRIVKEY /etc/ldap
 #sudo cp -v $CLIENT_CERT /etc/ldap/
 #sudo cp -v $CLIENT_PRIVKEY /etc/ldap/
-echo Files in path... 74 = `ls | wc -l`
+echo Files in path... 80 = `ls | wc -l`
 
 ## sudo chgrp openldap /etc/ldap/deathstar_slapd_key.pem
 ## sudo chgrp openldap 
 ## sudo chmod 0640 /etc/ldap/deathstar_slapd_key.pem
 ## sudo chmod 0640 /etc/ldap/$CLIENT_PRIVKEY
-sudo chmod 760 /etc/ldap/$CLIENT_PRIVKEY
+sudo chmod 666 /etc/ldap/$CLIENT_PRIVKEY
 sudo cp -r mycacert.pem /usr/local/share/ca-certificates/mycacert.crt
 sudo update-ca-certificates
 
 ## Create the file certinfo.ldif ...
 echo Create the file certinfo.ldif ...
-echo Now is path... 90 = `pwd`
+echo Now is path... 92 = `pwd`
 
-echo touch + a+w certinfo.ldif ... 92
+echo touch + a+w certinfo.ldif ... 94
 sudo touch certinfo.ldif
-sudo chmod a+w certinfo.ldif
+sudo chmod 666 certinfo.ldif
 
 echo Confirm names:
 echo CLIENT_CERT $CLIENT_CERT

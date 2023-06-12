@@ -67,7 +67,7 @@ add: olcTLSCertificateKeyFile
 olcTLSCertificateKeyFile: /etc/ldap/$CLIENT_PRIVKEY""" > certinfo.ldif
 
 echo Now is path... 86 = `pwd`
-Change owner for all files
+echo Change owner for all files ... 70
 # sudo chown root:root .
 
 ## Configure the slapd-config database:

@@ -45,6 +45,8 @@ echo scp -rp fd.vertel.se:/usr/share/fd-vertel-se/$CLIENTDIR /tmp
 
 # Bring the collection of files from the Fusion Directory server to *this* host:
 scp -rp fd.vertel.se:/usr/share/fd-vertel-se/$CLIENTDIR /tmp
+echo COPY TO LOCAL PATH /TMP
+
 echo Now is path... 48 = `pwd`
 echo Look at TMP! ls /tmp/$CLIENTDIR
 echo List of downloading files... 50
@@ -54,20 +56,21 @@ echo Copy the files...  /etc/ldap... 56
 sudo cp -r /tmp/$CLIENTDIR /etc/ldap/
 echo Install certs ... and modify... 55
 
-
 ## sudo chmod 0640 /etc/ldap/deathstar_slapd_key.pem
 ## sudo chmod 0640 /etc/ldap/$CLIENT_PRIVKEY
 sudo chmod 0640 /etc/ldap/$CLIENT_PRIVKEY
-sudo cp -r mycacert.pem /usr/local/share/ca-certificates/mycacert.crt
+sudo cp -r /etc/ldap/mycacert.pem /usr/local/share/ca-certificates/mycacert.crt
 sudo update-ca-certificates
 
-## Create the file certinfo.ldif ...
-echo Create the file certinfo.ldif ...
-echo Now is path... 92 = `pwd`
+echo Change path to /etc/ldap ... 65
+cd /etc/ldap
 
-echo touch + a+w certinfo.ldif ... 94
+echo Create the file certinfo.ldif ... 68
+echo Now is path... 67 = `pwd`
+
+echo touch + a+w certinfo.ldif ... 71
 sudo touch certinfo.ldif
-sudo chmod 666 certinfo.ldif
+sudo chmod 0640 certinfo.ldif
 
 echo Confirm names:
 echo CLIENT_CERT $CLIENT_CERT
@@ -80,8 +83,8 @@ olcTLSCertificateFile: /etc/ldap/$CLIENT_CERT
 add: olcTLSCertificateKeyFile
 olcTLSCertificateKeyFile: /etc/ldap/$CLIENT_PRIVKEY""" > certinfo.ldif
 
-echo Now is path... 107 = `pwd`
-# Change owner for all files
+echo Now is path... 86 = `pwd`
+Change owner for all files
 # sudo chown root:root .
 
 ## Configure the slapd-config database:

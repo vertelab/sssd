@@ -42,10 +42,11 @@ sudo cp -r /tmp/$CLIENTDIR /etc/ldap/
 echo chmod + chown ... Install certs ... and modify... 42
 
 sudo chmod 0640 /etc/ldap/$CLIENT_PRIVKEY
+ls /etc/ldap
 sudo cp -r /etc/ldap/mycacert.pem /usr/local/share/ca-certificates/mycacert.crt
 sudo update-ca-certificates
 
-echo Change path to /etc/ldap ... 65
+echo Change path to /etc/ldap ... 48
 cd /etc/ldap
 
 echo Create the file certinfo.ldif ... 68

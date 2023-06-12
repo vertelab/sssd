@@ -72,6 +72,7 @@ echo Change owner for all files ... 70
 sudo chown root:root /etc/ldap/*.*
 sudo chmod 666 /etc/ldap/*.*
 
+cd /etc/ldap/
 ## Configure the slapd-config database:
 sudo ldapmodify -Y EXTERNAL -H ldapi:/// -f certinfo.ldif
 

@@ -24,7 +24,7 @@ sudo apt install gnutls-bin
 sudo apt install ldap-utils
 sudo systemctl restart syslog.service
 ## Install for SSSD
-sudo apt install sssd-ldap ldap-utils
+sudo apt install sssd-ldap
 echo install software ... complete ... 28
 
 echo Change directory ... 30

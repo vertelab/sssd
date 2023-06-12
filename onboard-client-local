@@ -53,7 +53,7 @@ echo Now is path... 67 = `pwd`
 
 echo touch + a+w certinfo.ldif ... 71
 sudo touch certinfo.ldif
-sudo chmod 0640 certinfo.ldif
+sudo chmod 666 certinfo.ldif
 
 echo Confirm names:
 echo CLIENT_CERT: $CLIENT_CERT

@@ -38,7 +38,7 @@ echo List of downloading files... 37
 ls /tmp/$CLIENTDIR
 
 echo Copy the files...  /etc/ldap... 40
-sudo cp -r /tmp/$CLIENTDIR /etc/ldap/
+sudo mv /tmp/$CLIENTDIR/*.* /etc/ldap/
 echo chmod + chown ... Install certs ... and modify... 42
 
 sudo chmod 0640 /etc/ldap/$CLIENT_PRIVKEY

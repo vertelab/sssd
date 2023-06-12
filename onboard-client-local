@@ -19,7 +19,6 @@ echo CLIENT_CERT $CLIENT_CERT
 
 echo install software ... 20
 ## Install certtool
-sudo apt update
 sudo apt install gnutls-bin
 sudo apt install ldap-utils
 sudo systemctl restart syslog.service

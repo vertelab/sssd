@@ -67,8 +67,8 @@ olcTLSCertificateFile: /etc/ldap/$CLIENT_CERT
 add: olcTLSCertificateKeyFile
 olcTLSCertificateKeyFile: /etc/ldap/$CLIENT_PRIVKEY""" > certinfo.ldif
 
-echo Now is path... 86 = `pwd`
-echo Change owner for all files ... 70
+echo Now is path... 70 = `pwd`
+echo Change owner for all files ... 71
 sudo chown root:root /etc/ldap/*.*
 sudo chmod 666 /etc/ldap/*.*
 

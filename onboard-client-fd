@@ -36,7 +36,7 @@ sudo certtool --generate-privkey --sec-param Medium --outfile $CLIENT_PRIVKEY
 
 echo Path ... 37 = `pwd`
 echo chmod 666 $CLIENT_PRIVKEY ... 38
-sudo chmod 666 $CLIENT_PRIVKEY
+sudo chmod 664 $CLIENT_PRIVKEY
 
 # Create the file $CLIENT.info
 echo touch + g+w $CLIENT.info ... 41
@@ -69,8 +69,8 @@ echo certtool --generate-certificate :: Create $CLIENT_CERT  // Done!... 65
 echo Get a copy of the CA certificate: $CACERT ... 68
 echo Path ... 69 = `pwd`
 echo copy file to the current path: cp $CACERT . ... 70
-sudo cp $CACERT .
-sudo chmod 666 mycacert.pem
+sudo cp $CACERT /usr/share/fd-vertel-se/$CLIENTDIR
+sudo cp $CAPRIVKEY /usr/share/fd-vertel-se/$CLIENTDIR
 
 echo CLIENT_PRIVKEY: $CLIENT_PRIVKEY ... 74
 echo CLIENT_CERT: $CLIENT_CERT ... 75
@@ -88,19 +88,18 @@ replace: olcTLSCACertificateFile
 olcTLSCACertificateFile: /etc/ssl/certs/mycacert.pem
 -
 replace: olcTLSCertificateFile
-olcTLSCertificateFile: /usr/share/fd-vertel-se/$CLIENT_PRIVKEY
+olcTLSCertificateFile: /usr/share/fd-vertel-se/$CLIENTDIR/$CLIENT_PRIVKEY
 -
 add: olcTLSCertificateKeyFile
-olcTLSCertificateKeyFile: /usr/share/fd-vertel-se/$CLIENT_CERT""" > certinfo.ldif
+olcTLSCertificateKeyFile: /usr/share/fd-vertel-se/$CLIENTDIR/$CLIENT_CERT""" > certinfo.ldif
 
 sudo ldapmodify -Y EXTERNAL -H ldapi:/// -f certinfo.ldif
 
 echo Make correct chown to slapd-files: 96
-sudo chmod 666 $CLIENT_CERT
-sudo chmod 666 $CLIENT_PRIVKEY
+sudo chmod 644 /usr/share/fd-vertel-se/$CLIENTDIR/ -R
 
 # Change owner for all files
-sudo chown root:root . -R
+sudo chown root:root /usr/share/fd-vertel-se/$CLIENTDIR -R
 
 #### DONE
 echo DONE

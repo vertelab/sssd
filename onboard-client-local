@@ -12,16 +12,16 @@ echo CLIENTDIR $CLIENTDIR
 echo CLIENT_PRIVKEY $CLIENT_PRIVKEY
 echo CLIENT_CERT $CLIENT_CERT
 
-echo install software ... 20
+echo install software ... 15
 ## Install certtool
 sudo apt install gnutls-bin ldap-utils sssd-ldap
 sudo systemctl restart syslog.service
-echo install software ... complete ... 28
+echo install software ... complete ... 20
 
-echo Change directory ... 30
+echo Change directory ... 21
 cd /etc/ldap/
-echo The path ... 32 = `tmp`
-echo Do the key ... 33
+echo The path ... 23 = `tmp`
+echo Do the key ... 24
 # Do the key:
 sudo certtool --generate-privkey \
 --sec-param Medium \

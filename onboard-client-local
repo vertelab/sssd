@@ -14,7 +14,7 @@ echo CLIENT_CERT $CLIENT_CERT
 
 echo install software ... 15
 ## Install certtool
-sudo apt install gnutls-bin ldap-utils sssd-ldap
+sudo apt install -y gnutls-bin ldap-utils sssd-ldap
 sudo systemctl restart syslog.service
 echo install software ... complete ... 20
 

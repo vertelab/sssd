@@ -52,7 +52,7 @@ cd /etc/ldap
 echo Create the file certinfo.ldif ... 68
 echo Now is path... 67 = `pwd`
 
-echo touch + a+w certinfo.ldif ... 71
+echo touch + a+w certinfo.ldif ... 71  access denied if a+w !!
 sudo touch certinfo.ldif
 sudo chmod 666 certinfo.ldif
 
@@ -70,7 +70,7 @@ olcTLSCertificateKeyFile: /etc/ldap/$CLIENT_PRIVKEY""" > certinfo.ldif
 echo Now is path... 70 = `pwd`
 echo Change owner for all files ... 71
 sudo chown root:root /etc/ldap/*.*
-sudo chmod 666 /etc/ldap/*.*
+sudo chmod 0640 /etc/ldap/*.*
 
 cd /etc/ldap/
 ## Configure the slapd-config database:

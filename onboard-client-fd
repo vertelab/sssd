@@ -28,22 +28,21 @@ sudo mkdir $CLIENTDIR
 echo Path ... 28 = `pwd`
 cd $CLIENTDIR
 echo Path ... 30 = `pwd`
-echo Generate ssl-key  = $CLIENT_PRIVKEY 31
 
-# Generate ssl-key
+echo Generate ssl-key  = $CLIENT_PRIVKEY 31
 # [ -f "$CLIENT_PRIVKEY" ] || certtool --generate-privkey --sec-param Medium --outfile $CLIENT_PRIVKEY
 sudo certtool --generate-privkey --sec-param Medium --outfile $CLIENT_PRIVKEY
 
 echo Path ... 37 = `pwd`
-echo chmod 666 $CLIENT_PRIVKEY ... 38
+echo chmod 664 $CLIENT_PRIVKEY ... 38
 sudo chmod 664 $CLIENT_PRIVKEY
 
 # Create the file $CLIENT.info
-echo touch + g+w $CLIENT.info ... 41
+echo touch + 664 $CLIENT.info ... 41
 sudo touch $CLIENT.info
-sudo chmod 666 $CLIENT.info
+sudo chmod 664 $CLIENT.info
 
-echo Create info file = $CLIENT.info... 42
+echo Create info file = $CLIENT.info... 45
 # Create info file
 echo """organization = Vertel AB
 cn = $CLIENT.vertel.se
@@ -52,10 +51,10 @@ encryption_key
 signing_key
 expiration_days = 3650
 """ > $CLIENT.info
-echo Success to create info file = $CLIENT.info... 51
+echo Success to create info file = $CLIENT.info... 54
 
 # Create the consumer/client certificate
-echo certtool --generate-certificate :: Create $CLIENT_CERT ... 54
+echo certtool --generate-certificate :: Create $CLIENT_CERT ... 57
 
 sudo certtool --generate-certificate \
 --load-privkey $CLIENT_PRIVKEY \
@@ -68,7 +67,6 @@ echo certtool --generate-certificate :: Create $CLIENT_CERT  // Done!... 65
 # Get a copy of the CA certificate:
 echo Get a copy of the CA certificate: $CACERT ... 68
 echo Path ... 69 = `pwd`
-echo copy file to the current path: cp $CACERT . ... 70
 sudo cp $CACERT /usr/share/fd-vertel-se/$CLIENTDIR
 sudo cp $CAPRIVKEY /usr/share/fd-vertel-se/$CLIENTDIR
 

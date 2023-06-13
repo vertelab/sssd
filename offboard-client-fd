@@ -17,9 +17,10 @@ echo "Deleting directory and files for $CLIENT"
 
 # Check directory: (exists + rights)
 cd $CADIR
-echo Path ... 19 = `pwd`
+echo Path ... 20 = `pwd`
 
-## Enter client path, remove LDAP data
+echo chmod 0664 ... 22
+sudo chmod 0664 /usr/share/fd-vertel-se
 cd $CLIENTDIR
 echo Path ... 23 = `pwd`
 

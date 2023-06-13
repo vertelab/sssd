@@ -13,7 +13,7 @@ then
 fi
 echo Path ... 13 = `pwd`
 
-echo "Deleting directory and files for $CLIENT"
+echo Deleting directory and files for $CLIENT
 
 # Check directory: (exists + rights)
 cd $CADIR

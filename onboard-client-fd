@@ -75,6 +75,9 @@ echo CLIENT_CERT: $CLIENT_CERT ... 75
 echo Path ... 76 = `pwd`
 
 # Create the file certinfo.ldif
+echo Move to... cd $CADIR/$CLIENTDIR  78
+cd $CADIR/$CLIENTDIR
+
 echo touch + a+w certinfo.ldif ... 83
 sudo touch certinfo.ldif
 # sudo chmod a+w certinfo.ldif

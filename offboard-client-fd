@@ -1,7 +1,7 @@
 ## do the exit
 
 # CA-Variables
-export CADIR=/usr/share/fd-vertel-se/
+export CADIR=/usr/share/fd-vertel-se
 export CLIENT=$1
 export CLIENTDIR="$CLIENT"-ssl
 

@@ -82,10 +82,10 @@ sudo chmod 666 certinfo.ldif
 
 echo do the certinfo.ldif -procedure! ... 87
 echo """dn: cn=config
-replace: olcTLSCACertificateFile
+add: olcTLSCACertificateFile
 olcTLSCACertificateFile: /etc/ssl/certs/mycacert.pem
 -
-replace: olcTLSCertificateFile
+add: olcTLSCertificateFile
 olcTLSCertificateFile: /usr/share/fd-vertel-se/$CLIENTDIR/$CLIENT_PRIVKEY
 -
 add: olcTLSCertificateKeyFile

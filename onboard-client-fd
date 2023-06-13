@@ -22,10 +22,11 @@ echo "Create directory and files for $CLIENTDIR ... 21"
 echo Path ... 22 = `pwd`
 
 # Check directory: (exists + rights)
-sudo mkdir -p --mode=g+w /usr/share/$CADIR$CLIENTDIR
+echo mkdir -p --mode=g+w $CADIR/$CLIENTDIR 
+sudo mkdir -p --mode=g+w $CADIR/$CLIENTDIR
 ### sudo mkdir $CLIENTDIR
 echo Path ... 28 = `pwd`
-cd $CLIENTDIR
+cd $CADIR/$CLIENTDIR
 echo Path ... 30 = `pwd`
 
 echo Generate ssl-key  = $CLIENT_PRIVKEY 31

@@ -1,6 +1,6 @@
 # Onboarding new client serverside actions.
 # CA-Variables
-export CADIR=/usr/share/fd-vertel-se/
+export CADIR=/usr/share/fd-vertel-se
 export SLAPDPRIVKEY=/etc/ldap/fd_vertel_se_slapd_key.pem
 export CACERT=/etc/ssl/certs/mycacert.pem
 export CAPRIVKEY=/etc/ssl/private/mycakey.pem

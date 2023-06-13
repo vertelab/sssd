@@ -30,12 +30,12 @@ cd $CLIENTDIR
 echo Path ... 30 = `pwd`
 
 echo Generate ssl-key  = $CLIENT_PRIVKEY 31
-# [ -f "$CLIENT_PRIVKEY" ] || certtool --generate-privkey --sec-param Medium --outfile $CLIENT_PRIVKEY
+### [ -f "$CLIENT_PRIVKEY" ] || certtool --generate-privkey --sec-param Medium --outfile $CLIENT_PRIVKEY
 sudo certtool --generate-privkey --sec-param Medium --outfile $CLIENT_PRIVKEY
 
 echo Path ... 37 = `pwd`
 echo chmod 664 $CLIENT_PRIVKEY ... 38
-sudo chmod 664 $CLIENT_PRIVKEY
+## sudo chmod 664 $CLIENT_PRIVKEY
 
 # Create the file $CLIENT.info
 echo touch + 666 $CLIENT.info ... 41
@@ -53,7 +53,7 @@ expiration_days = 3650
 """ > $CLIENT.info
 echo Success to create info file = $CLIENT.info... 54
 
-# Create the consumer/client certificate
+echo Create the consumer/client certificate
 echo certtool --generate-certificate :: Create $CLIENT_CERT ... 57
 
 sudo certtool --generate-certificate \
@@ -100,7 +100,7 @@ echo Make correct chown to slapd-files: 96
 sudo chmod 644 /usr/share/fd-vertel-se/$CLIENTDIR/ -R
 
 # Change owner for all files
-sudo chown root:root /usr/share/fd-vertel-se/$CLIENTDIR -R
+### sudo chown root:root /usr/share/fd-vertel-se/$CLIENTDIR -R
 
 #### DONE
 echo DONE

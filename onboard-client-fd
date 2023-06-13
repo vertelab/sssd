@@ -40,7 +40,7 @@ sudo chmod 664 $CLIENT_PRIVKEY
 # Create the file $CLIENT.info
 echo touch + 664 $CLIENT.info ... 41
 sudo touch $CLIENT.info
-sudo chmod 664 $CLIENT.info
+sudo chmod 0664 $CLIENT.info
 
 echo Create info file = $CLIENT.info... 45
 # Create info file

@@ -15,13 +15,9 @@ echo Path ... 13 = `pwd`
 
 echo Deleting directory and files for $CLIENT
 
-# Check directory: (exists + rights)
-cd $CADIR
-echo Path ... 20 = `pwd`
-
-echo chmod 0664 ... 22
-sudo chmod 0664 /usr/share/fd-vertel-se
-cd $CLIENTDIR
+echo go to CADIR: $CADIR
+echo go to CLIENTDIR: $CLIENTDIR
+cd $CADIR/$CLIENTDIR
 echo Path ... 23 = `pwd`
 
 # Create the file certinfo.ldif -- remove the data

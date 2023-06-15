@@ -23,7 +23,7 @@ echo Path ... 22 = `pwd`
 
 # Check directory: (exists + rights)
 echo mkdir -p --mode=g+w $CADIR/$CLIENTDIR 
-sudo mkdir -p --mode=g+w $CADIR/$CLIENTDIR
+sudo mkdir -p --mode=775 $CADIR/$CLIENTDIR
 ### sudo mkdir $CLIENTDIR
 echo Path ... 28 = `pwd`
 cd $CADIR/$CLIENTDIR

@@ -32,7 +32,7 @@ wget -O- https://raw.githubusercontent.com/vertelab/sssd/main/offboard-client-lo
 wget -O- https://raw.githubusercontent.com/vertelab/sssd/main/offboard-client-fd | bash -s [client-hostname]
 <br>
 <br>
-# Some genuine geek info
+# Geek info
 <br>
 These scripts are based on a true story and the link below has all the correct answers!
 <br>

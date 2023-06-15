@@ -96,11 +96,5 @@ olcTLSCertificateKeyFile: /usr/share/fd-vertel-se/$CLIENTDIR/$CLIENT_CERT""" > c
 
 sudo ldapmodify -Y EXTERNAL -H ldapi:/// -f certinfo.ldif
 
-echo Make correct chown to slapd-files: 96
-sudo chmod 644 /usr/share/fd-vertel-se/$CLIENTDIR/ -R
-
-# Change owner for all files
-### sudo chown root:root /usr/share/fd-vertel-se/$CLIENTDIR -R
-
 #### DONE
 echo DONE

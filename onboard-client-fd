@@ -22,7 +22,7 @@ echo "Create directory and files for $CLIENTDIR ... 21"
 echo Path ... 22 = `pwd`
 
 # Check directory: (exists + rights)
-echo mkdir -p --mode=g+w $CADIR/$CLIENTDIR 
+echo mkdir -p --mode=775 $CADIR/$CLIENTDIR
 sudo mkdir -p --mode=775 $CADIR/$CLIENTDIR
 ### sudo mkdir $CLIENTDIR
 echo Path ... 28 = `pwd`
@@ -95,6 +95,9 @@ add: olcTLSCertificateKeyFile
 olcTLSCertificateKeyFile: /usr/share/fd-vertel-se/$CLIENTDIR/$CLIENT_CERT""" > certinfo.ldif
 
 sudo ldapmodify -Y EXTERNAL -H ldapi:/// -f certinfo.ldif
+
+echo chmod 775 $CADIR/$CLIENTDIR -R
+sudo chmod 775 $CADIR/$CLIENTDIR -R
 
 #### DONE
 echo DONE

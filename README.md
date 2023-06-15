@@ -32,4 +32,9 @@ wget -O- https://raw.githubusercontent.com/vertelab/sssd/main/offboard-client-lo
 wget -O- https://raw.githubusercontent.com/vertelab/sssd/main/offboard-client-fd | bash -s [client-hostname]
 <br>
 <br>
+# Some genuine geek info
+<br>
+These scripts are based on a true story and the link below has all the correct answers!
+<br>
+https://ubuntu.com/server/docs/service-ldap-with-tls
 

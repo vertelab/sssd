@@ -45,4 +45,10 @@ wget -O- https://raw.githubusercontent.com/vertelab/sssd/main/offboard-client-fd
 These scripts are based on a true story and the link below bring you the full story!
 <br>
 https://ubuntu.com/server/docs/service-ldap-with-tls
+<br>
+<br>
+# Troubleshooting
+<br>
+https://ubuntu.com/server/docs/service-sssd-troubleshooting
+
 

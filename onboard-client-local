@@ -19,7 +19,7 @@ sudo systemctl restart syslog.service
 echo install software ... complete ... 20
 
 echo Create conf-file...
-touch /etc/sssd/sssd.conf
+sudo touch /etc/sssd/sssd.conf
 sudo chown root:root /etc/sssd/sssd.conf
 sudo chmod 0600 /etc/sssd/sssd.conf
 

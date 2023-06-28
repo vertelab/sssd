@@ -20,8 +20,6 @@ echo install software ... complete ... 20
 
 echo Create conf-file...
 sudo touch /etc/sssd/sssd.conf
-sudo chown root:root /etc/sssd/sssd.conf
-sudo chmod 0600 /etc/sssd/sssd.conf
 
 echo """[sssd]
 config_file_version = 2
@@ -33,6 +31,9 @@ auth_provider = ldap
 ldap_uri = ldap://fd.vertel.se
 cache_credentials = True
 ldap_search_base = ou=vertel,dc=nodomain""" > /etc/sssd/sssd.conf
+
+sudo chown root:root /etc/sssd/sssd.conf
+sudo chmod 0600 /etc/sssd/sssd.conf
 
 sudo systemctl start sssd.service
 sudo pam-auth-update --enable mkhomedir

@@ -74,7 +74,7 @@ sudo chmod 0640 /etc/ldap/*.*
 
 cd /etc/ldap/
 ## Configure the slapd-config database:
-sudo ldapmodify -Y EXTERNAL -H ldapi:/// -f certinfo.ldif
+# sudo ldapmodify -Y EXTERNAL -H ldapi:/// -f certinfo.ldif
 
 #### DONE
 echo DONE

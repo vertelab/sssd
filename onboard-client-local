@@ -14,9 +14,29 @@ echo CLIENT_CERT $CLIENT_CERT
 
 echo install software ... 15
 ## Install certtool
-sudo apt install -y gnutls-bin ldap-utils sssd-ldap
+sudo apt install -y gnutls-bin sssd-ldap ldap-utils
 sudo systemctl restart syslog.service
 echo install software ... complete ... 20
+
+echo Create conf-file...
+touch /etc/sssd/sssd.conf
+sudo chown sudo:sudo /etc/sssd/sssd.conf
+sudo chmod 0600 /etc/sssd/sssd.conf
+
+echo """[sssd]
+config_file_version = 2
+domains = vertel.se
+
+[domain/$HOSTNAME.vertel.se]
+id_provider = ldap
+auth_provider = ldap
+ldap_uri = ldap://fd.vertel.se
+cache_credentials = True
+ldap_search_base = ou=vertel,dc=nodomain""" > /etc/sssd/sssd.conf
+
+sudo systemctl start sssd.service
+sudo pam-auth-update --enable mkhomedir
+
 
 echo Change directory ... 21
 cd /etc/ldap/

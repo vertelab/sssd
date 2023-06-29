@@ -27,7 +27,7 @@ echo """[sssd]
 config_file_version = 2
 domains = vertel.se
 
-[domain/$HOSTNAME.vertel.se]
+[domain/vertel.se]
 id_provider = ldap
 auth_provider = ldap
 ldap_uri = ldap://fd.vertel.se

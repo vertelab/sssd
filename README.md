@@ -54,5 +54,9 @@ https://ubuntu.com/server/docs/service-sssd-ldap
 # Troubleshooting
 <br>
 https://ubuntu.com/server/docs/service-sssd-troubleshooting
-
+<br>
+<br>
+# Ubuntu forums
+<br>
+https://ubuntuforums.org/
 

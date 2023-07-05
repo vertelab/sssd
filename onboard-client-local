@@ -49,7 +49,7 @@ ldap_tls_cipher_suite = NORMAL:!VERS-TLS1.3""" > /etc/sssd/sssd.conf
 
 sudo chmod 0600 /etc/sssd/sssd.conf
 
-sudo systemctl start sssd.service
+sudo systemctl restart sssd.service
 sudo pam-auth-update --enable mkhomedir
 
 

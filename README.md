@@ -67,6 +67,7 @@ https://askubuntu.com/
 <br>
 # Notes
 <pre>
-sudo systemctl start sssd.service
+sudo systemctl restart sssd.service
+sudo systemctl status sssd.service
 </pre>
 

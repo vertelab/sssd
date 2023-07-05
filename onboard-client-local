@@ -7,6 +7,8 @@ sudo sssctl cache-remove -y
 sudo sssctl cache-expire -E -y
 sudo ipa-client-install --uninstall -y
 
+sudo rm /etc/sssd/sssd.conf.deleted
+
 # Certificate for an OpenLDAP replica  (consumer/client)
 
 export HOSTNAME=`hostname -s`

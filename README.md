@@ -63,4 +63,10 @@ sudo sssctl user-checks <userid>
 # Ubuntu forums
 <br>
 https://askubuntu.com/
+<br>
+<br>
+# Notes
+<pre>
+sudo systemctl restart slapd.
+</pre>
 

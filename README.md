@@ -55,7 +55,11 @@ https://ubuntu.com/server/docs/service-sssd-ldap
 <br>
 https://ubuntu.com/server/docs/service-sssd-troubleshooting
 <br>
+getent passwd <userid>
 <br>
+sudo sssctl user-checks <userid>
+<br>
+
 # Ubuntu forums
 <br>
 https://ubuntuforums.org/

@@ -62,5 +62,5 @@ sudo sssctl user-checks <userid>
 
 # Ubuntu forums
 <br>
-https://ubuntuforums.org/
+https://askubuntu.com/
 

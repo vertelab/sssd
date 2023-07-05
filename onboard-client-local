@@ -1,5 +1,12 @@
 # Onboarding new client clientside actions.
 
+## REMOVE FREE-IPA:
+sudo apt -y update && sudo apt -y upgrade && sudo apt autoremove -y
+sudo apt install -y gnutls-bin sssd-ldap ldap-utils
+sudo sssctl cache-remove
+sudo sssctl cache-expire -E
+sudo ipa-client-install --uninstall
+
 # Certificate for an OpenLDAP replica  (consumer/client)
 
 export HOSTNAME=`hostname -s`
@@ -12,11 +19,11 @@ echo CLIENTDIR $CLIENTDIR
 echo CLIENT_PRIVKEY $CLIENT_PRIVKEY
 echo CLIENT_CERT $CLIENT_CERT
 
-echo install software ... 15
+echo install software ... 22
 ## Install certtool
 sudo apt install -y gnutls-bin sssd-ldap ldap-utils
 sudo systemctl restart syslog.service
-echo install software ... complete ... 20
+echo install software ... complete ... 26
 
 echo Create conf-file...
 sudo touch /etc/sssd/sssd.conf
@@ -53,15 +60,15 @@ sudo systemctl restart sssd.service
 sudo pam-auth-update --enable mkhomedir
 
 
-echo Change directory ... 21
+echo Change directory ... 63
 cd /etc/ldap/
-echo The path ... 23 = `tmp`
-echo Do the key ... 24
+echo The path ... 65 = `tmp`
+echo Do the key ... 66
 # Do the key:
 sudo certtool --generate-privkey \
 --sec-param Medium \
 --outfile $CLIENT_PRIVKEY
-echo Do the key... done! 29
+echo Do the key... done! 71
 
 # Bring the collection of files from the Fusion Directory server to *this* host:
 echo COPY FROM FD-SERVER TO LOCAL PATH /TMP
@@ -69,25 +76,25 @@ echo scp -rp fd.vertel.se:/usr/share/fd-vertel-se/$CLIENTDIR /tmp
 scp -rp fd.vertel.se:/usr/share/fd-vertel-se/$CLIENTDIR /tmp
 
 echo Look at TMP! ls /tmp/$CLIENTDIR
-echo List of downloading files... 37
+echo List of downloading files... 79
 ls /tmp/$CLIENTDIR
 
-echo Copy the files...  /etc/ldap... 40
+echo Copy the files...  /etc/ldap... 82
 sudo mv /tmp/$CLIENTDIR/*.* /etc/ldap/
-echo chmod + chown ... Install certs ... and modify... 42
+echo chmod + chown ... Install certs ... and modify... 84
 
 sudo chmod 0640 /etc/ldap/$CLIENT_PRIVKEY
 ls /etc/ldap
 sudo cp -r /etc/ldap/mycacert.pem /usr/local/share/ca-certificates/mycacert.crt
 sudo update-ca-certificates
 
-echo Change path to /etc/ldap ... 48
+echo Change path to /etc/ldap ... 91
 cd /etc/ldap
 
-echo Create the file certinfo.ldif ... 68
+echo Create the file certinfo.ldif ... 94
 echo Now is path... 67 = `pwd`
 
-echo touch + a+w certinfo.ldif ... 71  access denied if a+w !!
+echo touch + a+w certinfo.ldif ... 97  access denied if a+w !!
 sudo touch certinfo.ldif
 sudo chmod 666 certinfo.ldif
 
@@ -103,7 +110,7 @@ add: olcTLSCertificateKeyFile
 olcTLSCertificateKeyFile: /etc/ldap/$CLIENT_PRIVKEY""" > certinfo.ldif
 
 echo Now is path... 70 = `pwd`
-echo Change owner for all files ... 71
+echo Change owner for all files ... 113
 sudo chown root:root /etc/ldap/*.*
 sudo chmod 0640 /etc/ldap/*.*
 

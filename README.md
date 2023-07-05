@@ -67,6 +67,6 @@ https://askubuntu.com/
 <br>
 # Notes
 <pre>
-sudo systemctl restart slapd.
+sudo systemctl start sssd.service
 </pre>
 

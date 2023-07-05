@@ -28,11 +28,24 @@ config_file_version = 2
 domains = vertel.se
 
 [domain/vertel.se]
+debug_level = 10
 id_provider = ldap
 auth_provider = ldap
 ldap_uri = ldap://fd.vertel.se
 cache_credentials = True
-ldap_search_base = ou=vertel,dc=nodomain""" > /etc/sssd/sssd.conf
+ldap_search_base = ou=vertel,dc=nodomain
+ldap_access_filter = ou=people,ou=vertel,dc=nodomain
+ldap_id_use_start_tls = True
+ldap_tls_cacertdir = /etc/ssl/certs
+ldap_tls_reqcert = allow
+ldap_tls_cacert = /etc/ssl/certs/mycacert.pem
+#ldap_tls_reqcert = demand
+ldap_tls_reqcert = allow
+# ldap_tls_cert = /etc/ldap/$HOSTNAME_slapd_cert.pem
+# ldap_tls_key = /etc/ldap/$HOSTNAME_slapd_key.pem
+# Inte för produktion - fungerar dock
+#ldap_auth_disable_tls_never_use_in_production = true
+ldap_tls_cipher_suite = NORMAL:!VERS-TLS1.3""" > /etc/sssd/sssd.conf
 
 sudo chmod 0600 /etc/sssd/sssd.conf
 

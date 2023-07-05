@@ -3,9 +3,9 @@
 ## REMOVE FREE-IPA:
 sudo apt -y update && sudo apt -y upgrade && sudo apt autoremove -y
 sudo apt install sssd-tools -y
-sudo sssctl cache-remove
-sudo sssctl cache-expire -E
-sudo ipa-client-install --uninstall
+sudo sssctl cache-remove -y
+sudo sssctl cache-expire -E -y
+sudo ipa-client-install --uninstall -y
 
 # Certificate for an OpenLDAP replica  (consumer/client)
 

@@ -1,13 +1,13 @@
 # Onboarding new client clientside actions.
 
-## REMOVE FREE-IPA:
-sudo apt -y update && sudo apt -y upgrade && sudo apt autoremove -y
-sudo apt install sssd-tools -y
-sudo sssctl cache-remove -y
-sudo sssctl cache-expire -E -y
-sudo ipa-client-install --uninstall -y
+## REMOVE FREE-IPA: (see seperate page / code for this. Do it manually! Not in script!)
+#sudo apt -y update && sudo apt -y upgrade && sudo apt autoremove -y
+#sudo apt install sssd-tools -y
+#sudo sssctl cache-remove -y
+#sudo sssctl cache-expire -E -y
+#sudo ipa-client-install --uninstall -y
 
-sudo rm /etc/sssd/sssd.conf.deleted
+#sudo rm /etc/sssd/sssd.conf.deleted
 
 # Certificate for an OpenLDAP replica  (consumer/client)
 

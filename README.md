@@ -58,10 +58,11 @@ https://ubuntu.com/server/docs/service-sssd-ldap
 <br>
 https://ubuntu.com/server/docs/service-sssd-troubleshooting
 <br>
+<pre>
 getent passwd <userid>
-<br>
 sudo sssctl user-checks <userid>
-<br>
+</pre>
+ <br>
 
 # Ubuntu forums
 <br>
@@ -70,6 +71,7 @@ https://askubuntu.com/
 <br>
 # Notes
 <pre>
+sudo cat /var/log/ipaclient-uninstall.log
 sudo systemctl restart sssd.service
 sudo systemctl status sssd.service
 </pre>

@@ -18,7 +18,9 @@ wget -O- https://raw.githubusercontent.com/vertelab/sssd/main/onboard-client-loc
 
 # sssd offboarding
 
-Offboarding clients using SSSD.
+Offboarding clients using SSSD.<br>
+Ubuntu 18.04 N/A
+Ubuntu 22.04 Working fine!
 <br>
 <br>
 3. Log on to <b>the second computer, the client,</b> to complete the install and paste this line:<br>

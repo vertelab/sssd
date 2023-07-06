@@ -1,8 +1,8 @@
 # sssd onboarding
 Onboarding clients using SSSD.<br>
 Ubuntu 18.04 N/A <br>
-Ubuntu 20.04 Working fine! <br>
-Ubuntu 22.04 Working fine! <br>
+Ubuntu 20.04 Tested and working fine! <br>
+Ubuntu 22.04 Tested and working fine! <br>
 <br>
 <br>
 

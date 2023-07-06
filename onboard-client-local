@@ -1,14 +1,4 @@
 # Onboarding new client clientside actions.
-
-## REMOVE FREE-IPA: (see seperate page / code for this. Do it manually! Not in script!)
-#sudo apt -y update && sudo apt -y upgrade && sudo apt autoremove -y
-#sudo apt install sssd-tools -y
-#sudo sssctl cache-remove -y
-#sudo sssctl cache-expire -E -y
-#sudo ipa-client-install --uninstall -y
-
-#sudo rm /etc/sssd/sssd.conf.deleted
-
 # Certificate for an OpenLDAP replica  (consumer/client)
 
 export HOSTNAME=`hostname -s`
@@ -21,7 +11,7 @@ echo CLIENTDIR $CLIENTDIR
 echo CLIENT_PRIVKEY $CLIENT_PRIVKEY
 echo CLIENT_CERT $CLIENT_CERT
 
-echo install software ... 22
+echo install software ... 14
 ## Install certtool
 sudo apt install -y gnutls-bin sssd-ldap ldap-utils
 sudo systemctl restart syslog.service

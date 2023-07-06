@@ -1,5 +1,8 @@
 # sssd onboarding
-Onboarding clients using SSSD.
+Onboarding clients using SSSD.<br>
+Ubuntu 18.04 N/A <br>
+Ubuntu 20.04 Working fine! <br>
+Ubuntu 22.04 Working fine! <br>
 <br>
 <br>
 
@@ -19,8 +22,6 @@ wget -O- https://raw.githubusercontent.com/vertelab/sssd/main/onboard-client-loc
 # sssd offboarding
 
 Offboarding clients using SSSD.<br>
-Ubuntu 18.04 N/A
-Ubuntu 22.04 Working fine!
 <br>
 <br>
 3. Log on to <b>the second computer, the client,</b> to complete the install and paste this line:<br>

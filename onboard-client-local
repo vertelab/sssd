@@ -25,7 +25,7 @@ echo install software ... 24
 ## Install certtool
 sudo apt install -y gnutls-bin sssd-ldap ldap-utils
 sudo systemctl restart syslog.service
-echo install software ... complete ... 18
+echo install software ... complete ... 28
 
 echo Create conf-file...
 sudo touch /etc/sssd/sssd.conf
@@ -62,15 +62,15 @@ sudo systemctl restart sssd.service
 sudo pam-auth-update --enable mkhomedir
 
 
-echo Change directory ... 55
+echo Change directory ... 65
 cd /etc/ldap/
-echo The path ... 57 = `tmp`
-echo Do the key ... 58
+echo The path ... 67 = `tmp`
+echo Do the key ... 68
 # Do the key:
 sudo certtool --generate-privkey \
 --sec-param Medium \
 --outfile $CLIENT_PRIVKEY
-echo Do the key... done! 63
+echo Do the key... done! 73
 
 # Bring the collection of files from the Fusion Directory server to *this* host:
 echo COPY FROM FD-SERVER TO LOCAL PATH /TMP
@@ -78,10 +78,10 @@ echo scp -rp fd.vertel.se:/usr/share/fd-vertel-se/$CLIENTDIR /tmp
 scp -rp fd.vertel.se:/usr/share/fd-vertel-se/$CLIENTDIR /tmp
 
 echo Look at TMP! ls /tmp/$CLIENTDIR
-echo List of downloading files... 71
+echo List of downloading files... 81
 ls /tmp/$CLIENTDIR
 
-echo Copy the files...  /etc/ldap... 74
+echo Copy the files...  /etc/ldap... 84
 sudo mv /tmp/$CLIENTDIR/*.* /etc/ldap/
 echo chmod + chown ... Install certs ... and modify... 76
 
@@ -90,13 +90,13 @@ ls /etc/ldap
 sudo cp -r /etc/ldap/mycacert.pem /usr/local/share/ca-certificates/mycacert.crt
 sudo update-ca-certificates
 
-echo Change path to /etc/ldap ... 83
+echo Change path to /etc/ldap ... 93
 cd /etc/ldap
 
-echo Create the file certinfo.ldif ... 86
+echo Create the file certinfo.ldif ... 96
 echo Now is path... 67 = `pwd`
 
-echo touch + a+w certinfo.ldif ... 89 access denied if a+w !!
+echo touch + a+w certinfo.ldif ... 99 access denied if a+w !!
 sudo touch certinfo.ldif
 sudo chmod 666 certinfo.ldif
 
@@ -111,7 +111,7 @@ olcTLSCertificateFile: /etc/ldap/$CLIENT_CERT
 add: olcTLSCertificateKeyFile
 olcTLSCertificateKeyFile: /etc/ldap/$CLIENT_PRIVKEY""" > certinfo.ldif
 
-echo Now is path... 104 = `pwd`
+echo Now is path... 114 = `pwd`
 echo Change owner for all files ... 105
 sudo chown root:root /etc/ldap/*.*
 sudo chmod 0640 /etc/ldap/*.*

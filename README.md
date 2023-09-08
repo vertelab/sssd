@@ -42,8 +42,7 @@ wget -O- https://raw.githubusercontent.com/vertelab/sssd/main/offboard-client-fd
 <br>
 <br>
 <br>
-# When re-installing a server on your LAN, then nothing is working, unless you...
-<br>
+# When re-installing a server on your LAN, then nothing is working, unless you... <br>
 username@client:~$ ssh-keyscan -H stanley >> ~/.ssh/known_hosts<br>
 # stanley:22 SSH-2.0-OpenSSH_8.9p1 Ubuntu-3ubuntu0.3<br>
 # stanley:22 SSH-2.0-OpenSSH_8.9p1 Ubuntu-3ubuntu0.3<br>

@@ -1,0 +1,7 @@
+# Onboarding home directory with autofs.
+
+sudo apt install autofs
+
+
+#### DONE
+echo DONE

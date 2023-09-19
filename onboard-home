@@ -9,5 +9,7 @@ sudo scp $USER@lisa.vertel.se/home/Public/root_keys /root/.ssh
 sudo wget https://raw.githubusercontent.com/vertelab/sssd/main/home.autofs /etc/auto.master.d
 sudo wget https://raw.githubusercontent.com/vertelab/sssd/main/auto.home /etc/
 
+sudo systemctl restart autofs
+
 #### DONE
 echo DONE

@@ -1,0 +1,1 @@
+* -fstype=sshfs,rw,nodev,noatime,allow_other,default_permissions,max_read=65536 :root@lisa.vertel.se:/home/&

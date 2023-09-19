@@ -37,6 +37,17 @@ wget -O- https://raw.githubusercontent.com/vertelab/sssd/main/offboard-client-fd
 <br>
 <br>
 <br>
+# Automount home directory
+
+Mount home-directory using automount and sshfs.<br>
+<br>
+<br>
+<br>
+wget -O- https://raw.githubusercontent.com/vertelab/sssd/main/onboard-home | bash
+<br>
+<br>
+
+
 <br>
 <br>
 <br>

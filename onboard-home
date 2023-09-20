@@ -4,7 +4,7 @@ sudo apt install -y autofs sshfs
 
 sudo mkdir -p /root/.ssh
 echo "Ange lösen för lisa"
-sudo scp -r $USER@lisa.vertel.se:/home/Publikt/root_keys/ /root/.ssh
+sudo scp -r $USER@lisa.vertel.se:/home/Publikt/root_keys /root/.ssh
 
 
 sudo wget -P /etc/auto.master.d https://raw.githubusercontent.com/vertelab/sssd/main/home.autofs

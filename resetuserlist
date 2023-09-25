@@ -1,0 +1,7 @@
+#!/bin/bash
+
+sudo cp /dev/null /var/log/wtmp
+sudo cp /dev/null /var/log/btmp
+sudo cp /dev/null /var/log/lastlog
+sudo rm /var/lib/AccountsService/users/*
+sudo rm /var/lib/AccountsService/icons/*

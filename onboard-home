@@ -7,7 +7,7 @@ echo "Ange lösen för lisa"
 scp -r $USER@lisa.vertel.se:/home/Publikt/root_keys /tmp
 sudo mv /tmp/root_keys/* /root/.ssh
 sudo rm -r /tmp/root_keys
-sudo chown root:root /root/.ssh/id_rsa*
+sudo chown root:root /root/.ssh/id_rsa /root/.ssh/id_rsa.pub
 sudo chmod og-r /root/.ssh/id_rsa
 
 

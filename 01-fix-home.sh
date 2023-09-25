@@ -3,9 +3,9 @@
 ## Bind /opt/user/snap to home/snap
 if [ ! -d /opt/$USER ]
 then
- sudo mkdir -p /opt/$USER/snap /opt/$USER/Hämtningar
+ sudo mkdir -p /opt/$USER/snap /opt/$USER/Hämtningar /opt/$USER/.cache
  sudo chown -R $USER:$USER /opt/$USER
- cp -r /home/$USER/snap/ /opt/$USER/snap
+ cp -r /home/$USER/snap/ /opt/$USER
 fi
 if mount | awk '{if ($3 == "/home/'$USER'/snap") { exit -1 }} ENDFILE{exit 0}'; then
 	sudo mount --bind /opt/$USER/snap /home/$USER/snap
@@ -26,4 +26,10 @@ if [ ! -h /home/$USER/Hämtningar ]
 then 
     [ -d /home/$USER/Hämtningar ] && mv /home/$USER/Hämtningar /home/$USER/Hämtningar-
     ln -s /opt/$USER/Hämtningar /home/$USER/Hämtningar
+fi
+
+if [ ! -h /home/$USER/.cache ]
+then 
+    [ -d /home/$USER/.cache ] && mv /home/$USER/.cache /home/$USER/cache-
+    ln -s /opt/$USER/.cache /home/$USER/.cache
 fi

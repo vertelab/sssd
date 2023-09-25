@@ -4,13 +4,9 @@ sudo rm /etc/auto.master.d/home.autofs
 sudo rm /etc/auto.home
 sudo rm /etc/profile.d/01-fix-home
 sudo rm /etc/sudoers.d/mountbind
+sudo rm /root/.ssh/id_rsa /root/.ssh/id_rsa.pub
 
-#sudo wget -P /etc/auto.master.d https://raw.githubusercontent.com/vertelab/sssd/main/home.autofs
-#sudo wget -P /etc https://raw.githubusercontent.com/vertelab/sssd/main/auto.home
-#sudo wget -P /etc/profile.d https://raw.githubusercontent.com/vertelab/sssd/main/01-fix-home
-#sudo wget -P /etc/sudoers.d https://raw.githubusercontent.com/vertelab/sssd/main/mountbind
-
-sudo systemctl restart autofs
+sudo apt remove --purge autofs sshfs
 
 #### DONE
 echo DONE

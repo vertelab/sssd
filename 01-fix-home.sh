@@ -6,9 +6,10 @@ then
  sudo mkdir -p /opt/$USER/snap
  sudo chown -R $USER:$USER /opt/$USER
 fi
-if ! mount | awk '{if ($3 == "/home/$USER/snap") { exit 0}} ENDFILE{exit -1}'; then
+if mount | awk '{if ($3 == "/home/'$USER'/snap") { exit -1 }} ENDFILE{exit 0}'; then
 	sudo mount --bind /opt/$USER/snap /home/$USER/snap
 fi
+
 
 
 

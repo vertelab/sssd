@@ -1,1 +1,18 @@
-* -fstype=sshfs,rw,nodev,noatime,allow_other,default_permissions,max_read=65536 :root@lisa.vertel.se:/home/&
+#!/bin/bash
+# /etc/auto.home   automount script
+# This file must be executable to work! ( chmod 755 )
+key="${1/%:/}"
+user="${key/@*/}"
+t="${key/*@/}"
+server="${t/:*/}"
+tp="${t/*:/}"
+port="${tp/\/*/}"
+
+if [ $port = $server ]; then
+  port=22
+fi
+
+uid=`id -u $user`
+gid=`id -g $user`
+
+echo "-fstype=sshfs,rw,uid=$uid,gid=$gid,nodev,noatime,allow_other,default_permissions,cache_timeout=3600,max_read=65536 :root@lisa.vertel.se:/home/&"

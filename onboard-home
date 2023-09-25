@@ -4,7 +4,10 @@ sudo apt install -y autofs sshfs
 
 sudo mkdir -p /root/.ssh
 echo "Ange lösen för lisa"
-sudo scp $USER@lisa.vertel.se:/home/Publikt/root_keys/* /root/.ssh
+scp -r $USER@lisa.vertel.se:/home/Publikt/root_keys /tmp
+sudo mv /root_keys/* /root/.ssh
+sudo rm -r /root_keys
+
 sudo chmod og-r /root/.ssh/id_rsa
 
 

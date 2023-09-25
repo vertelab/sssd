@@ -22,5 +22,5 @@ fi
 
 if [ ! -h /home/$USER/Hämtningar ]
 then
-   ln -s /home/Hämtningar /home/$USER/Hämtningar
+   ln -s /opt/$USER/Hämtningar /home/$USER/Hämtningar
 fi

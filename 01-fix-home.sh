@@ -6,7 +6,12 @@ then
  sudo mkdir -p /opt/$USER/snap
  sudo chown -R $USER:$USER /opt/$USER
 fi
-sudo mount --bind /opt/$USER/snap /home/$USER/snap
+if ! mount | awk '{if ($3 == "/home/$USER/snap") { exit 0}} ENDFILE{exit -1}'; then
+	sudo mount --bind /opt/$USER/snap /home/$USER/snap
+fi
+
+
+
 
 ## Publikt symbolisk länk
 if [ ! -h /home/$USER/Publikt ]

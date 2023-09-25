@@ -5,6 +5,7 @@ if [ ! -d /opt/$USER ]
 then
  sudo mkdir -p /opt/$USER/snap /opt/$USER/Hämtningar
  sudo chown -R $USER:$USER /opt/$USER
+ cp -r /home/$USER/snap/ /opt/$USER/snap
 fi
 if mount | awk '{if ($3 == "/home/'$USER'/snap") { exit -1 }} ENDFILE{exit 0}'; then
 	sudo mount --bind /opt/$USER/snap /home/$USER/snap

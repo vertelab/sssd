@@ -3,7 +3,7 @@
 ## Bind /opt/user/snap to home/snap
 if [ ! -d /opt/$USER ]
 then
- sudo mkdir -p /opt/$USER/snap
+ sudo mkdir -p /opt/$USER/snap /opt/$USER/Hämtningar
  sudo chown -R $USER:$USER /opt/$USER
 fi
 if mount | awk '{if ($3 == "/home/'$USER'/snap") { exit -1 }} ENDFILE{exit 0}'; then
@@ -14,8 +14,13 @@ fi
 
 
 
-## Publikt symbolisk länk
+## Publikt och Hämtningar symbolisk länk
 if [ ! -h /home/$USER/Publikt ]
 then
    ln -s /home/Publikt /home/$USER/Publikt
+fi
+
+if [ ! -h /home/$USER/Hämtningar ]
+then
+   ln -s /home/Hämtningar /home/$USER/Hämtningar
 fi

@@ -5,7 +5,7 @@ sudo rm /etc/auto.home*
 sudo rm /etc/profile.d/01-fix-home*
 sudo rm /etc/sudoers.d/mountbind*
 sudo rm /root/.ssh/id_rsa /root/.ssh/id_rsa.pub
-sudo rm /usr/bin/reseruserlist*
+sudo rm /usr/bin/resetuserlist*
 
 sudo apt remove --purge autofs sshfs
 

@@ -12,7 +12,11 @@ if [ $port = $server ]; then
   port=22
 fi
 
-uid=`id -u $user`
-gid=`id -g $user`
+if [ $user = 'Publikt' ]; then
+    echo "-fstype=sshfs,rw,nodev,noatime,allow_other,default_permissions,cache_timeout=3600,max_read=65536 :root@lisa.vertel.se:/home/&"
+else
+    uid=`id -u $user`
+    gid=`id -g $user`
 
-echo "-fstype=sshfs,rw,uid=$uid,gid=$gid,nodev,noatime,allow_other,default_permissions,cache_timeout=3600,max_read=65536 :root@lisa.vertel.se:/home/&"
+    echo "-fstype=sshfs,rw,uid=$uid,gid=$gid,nodev,noatime,allow_other,default_permissions,cache_timeout=3600,max_read=65536 :root@lisa.vertel.se:/home/&"
+fi

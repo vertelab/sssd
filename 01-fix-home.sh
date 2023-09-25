@@ -17,10 +17,12 @@ fi
 ## Publikt och Hämtningar symbolisk länk
 if [ ! -h /home/$USER/Publikt ]
 then
+   [ -d /home/$USER/Publikt ] && mv /home/$USER/Publikt /home/$USER/Publikt- 
    ln -s /home/Publikt /home/$USER/Publikt
 fi
 
 if [ ! -h /home/$USER/Hämtningar ]
-then
-   ln -s /opt/$USER/Hämtningar /home/$USER/Hämtningar
+then 
+    [ -d /home/$USER/Hämtningar ] && mv /home/$USER/Hämtningar /home/$USER/Hämtningar-
+    ln -s /opt/$USER/Hämtningar /home/$USER/Hämtningar
 fi

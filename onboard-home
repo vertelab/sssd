@@ -16,6 +16,10 @@ sudo wget -P /etc https://raw.githubusercontent.com/vertelab/sssd/main/auto.home
 sudo chmod 775 /etc/auto.home
 sudo wget -P /etc/profile.d https://raw.githubusercontent.com/vertelab/sssd/main/01-fix-home.sh
 sudo wget -P /etc/sudoers.d https://raw.githubusercontent.com/vertelab/sssd/main/mountbind
+sudo wget -P /usr/bin https://raw.githubusercontent.com/vertelab/sssd/main/resetuserlist
+sudo chmod 775 /usr/bin/resetuserlist
+
+
 
 sudo systemctl restart autofs
 

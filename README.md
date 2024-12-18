@@ -5,6 +5,12 @@ Ubuntu 20.04 Tested and working fine! <br>
 Ubuntu 22.04 Tested and working fine! <br>
 <br>
 <br>
+# Ubuntu LDAP User Guide:
+https://ubuntu.com/server/docs/install-and-configure-ldap<br>
+<br>
+<br>
+
+
 
 1. Log on to our <b>Fusion Directory server</b> and paste this line:<br>
 <br>

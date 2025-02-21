@@ -39,6 +39,9 @@ wget -O- https://raw.githubusercontent.com/vertelab/sssd/main/offboard-client-lo
 wget -O- https://raw.githubusercontent.com/vertelab/sssd/main/offboard-client-fd | bash -s [client-hostname]
 <br>
 <br>
+Hint, hint! The name of the exact client name will be found in this path: /usr/share/fd-vertel-se/
+<br>
+<br>
 <br>
 <br>
 # Automount home directory

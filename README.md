@@ -12,12 +12,12 @@ https://ubuntu.com/server/docs/install-and-configure-ldap<br>
 
 1. Log on to our <b>Fusion Directory server</b> and paste this line:<br>
 <br>
-wget -O- https://raw.githubusercontent.com/vertelab/sssd/main/onboard-client-fd | bash -s [client-hostname]
+wget -O- https://raw.githubusercontent.com/vertelab/sssd/main/onboard-client-ldap | bash -s [client-hostname]
 <br>
 <br>
 2. Log on to <b>the second computer, the client,</b> to complete the install and paste this line:<br>
 <br>
-wget -O- https://raw.githubusercontent.com/vertelab/sssd/main/onboard-client-local | bash
+wget -O- https://raw.githubusercontent.com/vertelab/sssd/main/onboard-client-sssd | bash
 <br>
 <br>
 <br>

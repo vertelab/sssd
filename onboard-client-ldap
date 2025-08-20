@@ -89,10 +89,10 @@ add: olcTLSCACertificateFile
 olcTLSCACertificateFile: /etc/ssl/certs/mycacert.pem
 -
 add: olcTLSCertificateFile
-olcTLSCertificateFile: /usr/share/fd-vertel-se/$CLIENTDIR/$CLIENT_PRIVKEY
+olcTLSCertificateFile: /usr/share/fd-vertel-se/$CLIENTDIR/$CLIENT_CERT
 -
 add: olcTLSCertificateKeyFile
-olcTLSCertificateKeyFile: /usr/share/fd-vertel-se/$CLIENTDIR/$CLIENT_CERT""" > certinfo.ldif
+olcTLSCertificateKeyFile: /usr/share/fd-vertel-se/$CLIENTDIR/$CLIENT_PRIVKEY""" > certinfo.ldif
 
 sudo ldapmodify -Y EXTERNAL -H ldapi:/// -f certinfo.ldif
 

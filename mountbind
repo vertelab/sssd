@@ -1,1 +1,0 @@
-%sudo	ALL=NOPASSWD: /usr/bin/mount, /usr/bin/chown, /usr/bin/mkdir

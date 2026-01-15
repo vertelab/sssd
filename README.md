@@ -25,7 +25,7 @@ kind.vertel.se
 <br>
 
 ```
-curl -sSL https://git.vertel.se/vertelab/ldap/-/raw/main/onboard-client-sssd | bash -s [username on fd.vertel.se]
+curl -sSL https://raw.githubusercontent.com/vertelab/ldap/refs/heads/main/onboard-client-sssd | bash -s [username on fd.vertel.se]
 ```
 
 <br>

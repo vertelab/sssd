@@ -49,7 +49,7 @@ EOF
 sudo chown root:root /etc/sssd/sssd.conf
 sudo chmod 0600 /etc/sssd/sssd.conf
 
-ssh -t -q "$USERNAME"@fd.vertel.se "sudo cp /usr/local/share/ca-certificates/mycacert.crt ~/ && sudo chown $USERNAME:$USERNAME ~/mycacert.crt"
+ssh -t -q -l "$USERNAME" fd.vertel.se "sudo cp /usr/local/share/ca-certificates/mycacert.crt ~/ && sudo chown $USERNAME:$USERNAME ~/mycacert.crt"
 scp "$USERNAME"@fd.vertel.se:mycacert.crt ~/
 ssh -t -q "$USERNAME"@fd.vertel.se "sudo rm ~/mycacert.crt"
 sudo sudo chmod 440 ~/mycacert.crt && sudo chown root:root ~/mycacert.crt

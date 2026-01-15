@@ -1,127 +1,61 @@
-# Onboarding new client clientside actions.
+#!/bin/bash
 
-## REMOVE FREE-IPA:
-sudo apt -y update && sudo apt -y upgrade && sudo apt autoremove -y
-sudo apt install sssd-tools -y
-sudo sssctl cache-remove -y
-sudo sssctl cache-expire -E -y
-sudo ipa-client-install --uninstall -y
+set -u
 
-sudo rm /etc/sssd/sssd.conf.deleted
+usage() {
+    echo "Usage: $0 [-u <username>]" 1>&2
+    echo "  -u: Username on fd.vertel.se (defaults to \$USER)"
+    exit 1
+}
 
-# Certificate for an OpenLDAP replica  (consumer/client)
+OPTIONS=$(getopt -o u: -- "$@") || usage
+eval set -- "$OPTIONS"
 
-export HOSTNAME=`hostname -s`
-export CLIENTDIR="$HOSTNAME"-ssl
-export CLIENT_PRIVKEY="$HOSTNAME"_slapd_key.pem
-export CLIENT_CERT="$HOSTNAME"_slapd_cert.pem
+USERNAME="$USER"  # Default to current user
 
-echo Hostname: $HOSTNAME
-echo CLIENTDIR $CLIENTDIR
-echo CLIENT_PRIVKEY $CLIENT_PRIVKEY
-echo CLIENT_CERT $CLIENT_CERT
+while [ $# -gt 0 ]; do
+    case "$1" in
+        -u) USERNAME="$2"; shift 2 ;;
+        --) shift; break ;;
+        *) usage ;;
+    esac
+done
 
-echo install software ... 24
-## Install certtool
-sudo apt install -y gnutls-bin sssd-ldap ldap-utils
-sudo systemctl restart syslog.service
-echo install software ... complete ... 28
+sudo apt update
+sudo apt install sssd
 
-echo Create conf-file...
-sudo touch /etc/sssd/sssd.conf
-sudo chown root:root /etc/sssd/sssd.conf
-sudo chmod 666 /etc/sssd/sssd.conf
+sudo systemctl enable sssd.service
 
-echo """[sssd]
+sudo tee /etc/sssd/sssd.conf >/dev/null << 'EOF'
+[sssd]
 config_file_version = 2
-domains = vertel.se
+domains = fd.vertel.se
+services = ssh
 
-[domain/vertel.se]
-# debug_level = 10
+[domain/fd.vertel.se]
+#debug_level = 9
 id_provider = ldap
 auth_provider = ldap
-ldap_uri = ldap://fd.vertel.se
+ldap_ssh_authorizedkeys = ipaSshPubKey
+chpass_provider = ldap
+ldap_uri = ldaps://fd.vertel.se
 cache_credentials = True
 ldap_search_base = ou=vertel,dc=nodomain
-ldap_access_filter = ou=people,ou=vertel,dc=nodomain
-ldap_id_use_start_tls = True
-ldap_tls_cacertdir = /etc/ssl/certs
+ldap_access_filter = (uid=*)
 ldap_tls_reqcert = allow
 ldap_tls_cacert = /etc/ssl/certs/mycacert.pem
-#ldap_tls_reqcert = demand
-ldap_tls_reqcert = allow
-# ldap_tls_cert = /etc/ldap/${HOSTNAME}_slapd_cert.pem
-# ldap_tls_key = /etc/ldap/${HOSTNAME}_slapd_key.pem
-# Inte för produktion - fungerar dock
-#ldap_auth_disable_tls_never_use_in_production = true
-ldap_tls_cipher_suite = NORMAL:!VERS-TLS1.3""" > /etc/sssd/sssd.conf
+EOF
 
+sudo chown root:root /etc/sssd/sssd.conf
 sudo chmod 0600 /etc/sssd/sssd.conf
 
-sudo systemctl restart sssd.service
-sudo pam-auth-update --enable mkhomedir
-
-
-echo Change directory ... 65
-cd /etc/ldap/
-echo The path ... 67 = `tmp`
-echo Do the key ... 68
-# Do the key:
-sudo certtool --generate-privkey \
---sec-param Medium \
---outfile $CLIENT_PRIVKEY
-echo Do the key... done! 73
-
-# Bring the collection of files from the Fusion Directory server to *this* host:
-echo COPY FROM FD-SERVER TO LOCAL PATH /TMP
-echo scp -rp fd.vertel.se:/usr/share/fd-vertel-se/$CLIENTDIR /tmp
-scp -rp fd.vertel.se:/usr/share/fd-vertel-se/$CLIENTDIR /tmp
-
-echo Look at TMP! ls /tmp/$CLIENTDIR
-echo List of downloading files... 81
-ls /tmp/$CLIENTDIR
-
-echo Copy the files...  /etc/ldap... 84
-sudo mv /tmp/$CLIENTDIR/*.* /etc/ldap/
-echo chmod + chown ... Install certs ... and modify... 76
-
-sudo chmod 0640 /etc/ldap/$CLIENT_PRIVKEY
-ls /etc/ldap
-sudo cp -r /etc/ldap/mycacert.pem /usr/local/share/ca-certificates/mycacert.crt
+ssh -t -q "$USERNAME"@fd.vertel.se "sudo cp /usr/local/share/ca-certificates/mycacert.crt ~/ && sudo chown $USER:$USER ~/mycacert.crt"
+scp "$USERNAME"@fd.vertel.se:mycacert.crt ~/
+ssh -t -q "$USERNAME"@fd.vertel.se "sudo rm ~/mycacert.crt"
+sudo sudo chmod 440 ~/mycacert.crt && sudo chown root:root ~/mycacert.crt
+sudo mv ~/mycacert.crt /usr/local/share/ca-certificates/
 sudo update-ca-certificates
 
-echo Change path to /etc/ldap ... 93
-cd /etc/ldap
-
-echo Create the file certinfo.ldif ... 96
-echo Now is path... 67 = `pwd`
-
-echo touch + a+w certinfo.ldif ... 99 access denied if a+w !!
-sudo touch certinfo.ldif
-sudo chmod 666 certinfo.ldif
-
-echo Confirm names:
-echo CLIENT_CERT: $CLIENT_CERT
-echo CLIENT_PRIVKEY: $CLIENT_PRIVKEY
-
-echo """dn: cn=config
-add: olcTLSCertificateFile
-olcTLSCertificateFile: /etc/ldap/$CLIENT_CERT
--
-add: olcTLSCertificateKeyFile
-olcTLSCertificateKeyFile: /etc/ldap/$CLIENT_PRIVKEY""" > certinfo.ldif
-
-echo Now is path... 114 = `pwd`
-echo Change owner for all files ... 105
-sudo chown root:root /etc/ldap/*.*
-sudo chmod 0640 /etc/ldap/*.*
-
-cd /etc/ldap/
-## Configure the slapd-config database:
-# sudo ldapmodify -Y EXTERNAL -H ldapi:/// -f certinfo.ldif
-
-## Restart service or things wont work!
+sudo pam-auth-update --enable mkhomedir
 sudo systemctl restart sssd.service
 
-#### DONE
-echo DONE

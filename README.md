@@ -1,113 +1,142 @@
-# sssd onboarding
-Onboarding clients using SSSD.<br>
-Ubuntu 18.04 N/A <br>
-Ubuntu 20.04 Tested and working fine! <br>
-Ubuntu 22.04 Tested and working fine! <br>
+# Ubuntu + LDAP User Guides:
+
+https://documentation.ubuntu.com/server/how-to/openldap/install-openldap/<br>
+https://documentation.ubuntu.com/server/how-to/openldap/ldap-and-tls/
+
 <br>
-<br>
-# Ubuntu + LDAP User Guide:
-https://ubuntu.com/server/docs/install-and-configure-ldap<br>
+
+## clients using SSSD.
 <br>
 <br>
 
-1. Log on to our <b>Fusion Directory server</b> and paste this line:<br>
+utv18
+vertel.se
+azzar.org
+fd.vertel.se
+tyrone.vertel.se
+kind.vertel.se
+
 <br>
-wget -O- https://raw.githubusercontent.com/vertelab/sssd/main/onboard-client-ldap | bash -s [client-hostname]
-<br>
-<br>
-2. Log on to <b>the second computer, the client,</b> to complete the install and paste this line:<br>
-<br>
-wget -O- https://raw.githubusercontent.com/vertelab/sssd/main/onboard-client-sssd | bash
-<br>
-<br>
+
+## sssd onboarding script
+
+**Since your username on the onboarding machine likely differs from your fd.vertel.se username, you must provide it to the script.<br>If it doesn't, you can ignore the -u flag.**
 <br>
 <br>
 
-# sssd offboarding
-
-Offboarding clients using SSSD.<br>
-<br>
-<br>
-3. Log on to <b>the second computer, the client,</b> to complete the install and paste this line:<br>
-<br>
-wget -O- https://raw.githubusercontent.com/vertelab/sssd/main/offboard-client-local | bash
-<br>
-<br>
-<br>
-4. Log on to our <b>Fusion Directory server</b> and paste this line:<br>
-<br>
-wget -O- https://raw.githubusercontent.com/vertelab/sssd/main/offboard-client-fd | bash -s [client-hostname]
-<br>
-<br>
-Hint, hint! The name of the exact client name will be found in this path: /usr/share/fd-vertel-se/
-<br>
-<br>
-<br>
-<br>
-# Automount home directory
-
-Mount home-directory using automount and sshfs.<br>
-<br>
-wget -O- https://raw.githubusercontent.com/vertelab/sssd/main/onboard-home | bash
-<br>
-<br>
-# Offboard home
-<br>
-<br>
-wget -O- https://raw.githubusercontent.com/vertelab/sssd/main/offboard-home | bash
+```
+curl -sSL https://git.vertel.se/vertelab/ldap/-/raw/main/onboard-client-sssd | bash -s [username on fd.vertel.se]
+```
 
 <br>
+
+## sssd manual onboarding
+
 <br>
-<br>
+Install sssd on the onbording machine
 <br>
 <br>
 
-# When re-installing a server on your LAN, then nothing is working unless you...
+```
+sudo apt update
+sudo apt install sssd
+```
 
-<pre>
-username@client:~$ ssh-keyscan -H stanley >> ~/.ssh/known_hosts
-# stanley:22 SSH-2.0-OpenSSH_8.9p1 Ubuntu-3ubuntu0.3
-# stanley:22 SSH-2.0-OpenSSH_8.9p1 Ubuntu-3ubuntu0.3
-# stanley:22 SSH-2.0-OpenSSH_8.9p1 Ubuntu-3ubuntu0.3
-# stanley:22 SSH-2.0-OpenSSH_8.9p1 Ubuntu-3ubuntu0.3
-# stanley:22 SSH-2.0-OpenSSH_8.9p1 Ubuntu-3ubuntu0.3
-username@client:~$ ssh stanley
-</pre>
 <br>
-<br>
+Enable sssd
 <br>
 <br>
 
-# Geek info
-<br>
-These scripts are based on a true story and the link below bring you the full story!
-<br>
-https://ubuntu.com/server/docs/service-ldap-with-tls
-<br>
-<br>
-Another important link... <br>
-https://ubuntu.com/server/docs/service-sssd-ldap
-<br>
-<br>
-# Troubleshooting
-<br>
-https://ubuntu.com/server/docs/service-sssd-troubleshooting
-<br>
-<pre>
-getent passwd <userid>
-sudo sssctl user-checks <userid>
-</pre>
- <br>
+```
+sudo systemctl enable sssd.service
+```
 
-# Ubuntu forums
 <br>
-https://askubuntu.com/
+Add the following to the file /etc/sssd/sssd.conf
 <br>
 <br>
-# Notes
-<pre>
-sudo cat /var/log/ipaclient-uninstall.log
+
+```
+[sssd]
+config_file_version = 2
+domains = fd.vertel.se
+services = ssh
+
+[domain/fd.vertel.se]
+#debug_level = 9
+id_provider = ldap
+auth_provider = ldap
+ldap_ssh_authorizedkeys = ipaSshPubKey
+chpass_provider = ldap
+ldap_uri = ldaps://fd.vertel.se
+cache_credentials = True
+ldap_search_base = ou=vertel,dc=nodomain
+ldap_access_filter = (uid=*)
+ldap_tls_reqcert = allow
+ldap_tls_cacert = /etc/ssl/certs/mycacert.pem
+```
+
+<br>
+Make sure that sssd.conf has the right owner and permissions
+<br>
+<br>
+
+```
+sudo chown root:root /etc/sssd/sssd.conf
+sudo chmod 0600 /etc/sssd/sssd.conf
+```
+
+<br>
+Copy the certificate on the fd.vertel.se server (usr/local/share/ca-certificates/mycacert.crt)<br>to the same location on the onbording machine.
+
+<br>
+<br>
+
+<br>
+If you are lost, this is what the script does, but it's probably easier to just log on to the fd.vertel.se server.
+<br>
+<br>
+
+```
+ssh -t -q "$USERNAME"@fd.vertel.se "sudo cp /usr/local/share/ca-certificates/mycacert.crt ~/ && sudo chown $USER:$USER ~/mycacert.crt"
+scp "$USERNAME"@fd.vertel.se:mycacert.crt ~/
+sudo sudo chmod 440 ~/mycacert.crt && sudo chown root:root ~/mycacert.crt
+sudo mv ~/mycacert.crt /usr/local/share/ca-certificates/
+```
+
+<br>
+Just like the script after moving it to /usr/local/share/ca-certificates/mycacert.crt on the onbording machine<br>make sure the it has the right owner and permissions.
+<br>
+<br>
+
+```
+sudo sudo chmod 440 /usr/local/share/ca-certificates/mycacert.crt 
+sudo chown root:root /usr/local/share/ca-certificates/mycacert.crt
+```
+
+<br>
+Add the certificate to the onbording machine properly
+<br>
+<br>
+
+```
+sudo update-ca-certificates
+```
+
+<br>
+Activate user directory creation on login.
+<br>
+<br>
+
+```
+sudo pam-auth-update --enable mkhomedir
+```
+
+<br>
+Restart the sssd service
+<br>
+<br>
+
+```
 sudo systemctl restart sssd.service
-sudo systemctl status sssd.service
-</pre>
-
+```

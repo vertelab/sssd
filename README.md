@@ -88,8 +88,9 @@ If you are lost, this is what the script does, but it's probably easier to just 
 <br>
 
 ```
-ssh -t -q "$USERNAME"@fd.vertel.se "sudo cp /usr/local/share/ca-certificates/mycacert.crt ~/ && sudo chown $USER:$USER ~/mycacert.crt"
-scp "$USERNAME"@fd.vertel.se:mycacert.crt ~/
+ssh -t -q <username>@fd.vertel.se "sudo cp /usr/local/share/ca-certificates/mycacert.crt ~/ && sudo chown $USER:$USER ~/mycacert.crt"
+scp <username>@fd.vertel.se:mycacert.crt ~/
+ssh -t -q <username>@fd.vertel.se "sudo rm ~/mycacert.crt"
 sudo sudo chmod 440 ~/mycacert.crt && sudo chown root:root ~/mycacert.crt
 sudo mv ~/mycacert.crt /usr/local/share/ca-certificates/
 ```

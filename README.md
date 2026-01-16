@@ -62,11 +62,14 @@ config_file_version = 2
 domains = fd.vertel.se
 services = ssh
 
+[ssh]
+ssh_authorized_keys_cache_timeout = 60
+ldap_user_ssh_public_key = sshPublicKey
+
 [domain/fd.vertel.se]
 #debug_level = 9
 id_provider = ldap
 auth_provider = ldap
-ldap_ssh_authorizedkeys = ipaSshPubKey
 chpass_provider = ldap
 ldap_uri = ldaps://fd.vertel.se
 cache_credentials = True

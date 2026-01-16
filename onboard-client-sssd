@@ -63,4 +63,4 @@ sudo update-ca-certificates
 echo -e "\nAuthorizedKeysCommand /usr/bin/sss_ssh_authorizedkeys\nAuthorizedKeysCommandUser nobody" | sudo tee -a /etc/ssh/sshd_config
 
 sudo pam-auth-update --enable mkhomedir
-sudo systemctl restart sssd.service sshd
+sudo systemctl restart sssd.service ssh.service

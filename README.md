@@ -113,6 +113,14 @@ Add the certificate to the onbording machine properly
 ```
 sudo update-ca-certificates
 ```
+<br>
+Add lines to /etc/ssh/sshd_config to enable private key authentication through LDAP
+<br>
+<br>
+
+```
+echo -e "\nAuthorizedKeysCommand /usr/bin/sss_ssh_authorizedkeys\nAuthorizedKeysCommandUser nobody" | sudo tee -a /etc/ssh/sshd_config
+```
 
 <br>
 Activate user directory creation on login.

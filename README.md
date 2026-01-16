@@ -12,7 +12,7 @@ https://documentation.ubuntu.com/server/how-to/openldap/ldap-and-tls/
 <br>
 
 ```
-bash <(curl -sSL https://raw.githubusercontent.com/vertelab/ldap/refs/heads/main/onboard-client-sssd) [username on fd.vertel.se]
+bash <(curl -sSL https://raw.githubusercontent.com/vertelab/ldap/refs/heads/main/onboard-client-sssd) -u [username on fd.vertel.se]
 ```
 
 <br>

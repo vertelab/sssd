@@ -55,10 +55,12 @@ sudo chmod 0600 /etc/sssd/sssd.conf
 ssh -t -q -l "$USERNAME" fd.vertel.se "sudo cp /usr/local/share/ca-certificates/mycacert.crt ~/ && sudo chown $USERNAME:$USERNAME ~/mycacert.crt"
 scp "$USERNAME"@fd.vertel.se:mycacert.crt ~/
 ssh -t -q "$USERNAME"@fd.vertel.se "sudo rm ~/mycacert.crt"
+
 sudo sudo chmod 440 ~/mycacert.crt && sudo chown root:root ~/mycacert.crt
 sudo mv ~/mycacert.crt /usr/local/share/ca-certificates/
 sudo update-ca-certificates
 
-sudo pam-auth-update --enable mkhomedir
-sudo systemctl restart sssd.service
+echo -e "\nAuthorizedKeysCommand /usr/bin/sss_ssh_authorizedkeys\nAuthorizedKeysCommandUser nobody" | sudo tee -a /etc/ssh/sshd_config
 
+sudo pam-auth-update --enable mkhomedir
+sudo systemctl restart sssd.service sshd

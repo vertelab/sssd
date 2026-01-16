@@ -7,7 +7,7 @@ https://documentation.ubuntu.com/server/how-to/openldap/ldap-and-tls/
 
 ## sssd onboarding script
 
-**Since your username on the onboarding machine likely differs from your fd.vertel.se username, you must provide it to the script.<br>If it doesn't, you can ignore the -u flag.**
+**Since your username on the onboarding machine likely differs from your fd.vertel.se username,<br>you must provide it to the script.If it doesn't, you don't need to add it to the end of the command.**
 <br>
 <br>
 
